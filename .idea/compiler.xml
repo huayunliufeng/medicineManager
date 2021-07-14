@@ -9,5 +9,8 @@
         <module name="medicineManager" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="medicineManager" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>

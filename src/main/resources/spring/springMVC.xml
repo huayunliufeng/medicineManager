@@ -10,12 +10,15 @@
     <!--  启用注解  -->
     <mvc:annotation-driven/>
     <!--  内部视图解析器  -->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
-    </bean>
+    </bean>-->
+
+    <!--  处理静态资源  -->
+    <mvc:resources mapping="/staticpage/**" location="/staticpage/"/>
 
     <!--  配置自定义异常解析器  -->
-<!--    <bean class="com.zhong.utils.CustomerHandlerException"/>-->
+    <!--    <bean class="com.zhong.utils.CustomerHandlerException"/>-->
 
 </beans>
