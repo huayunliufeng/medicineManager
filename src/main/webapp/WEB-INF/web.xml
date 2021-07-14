@@ -39,6 +39,10 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>springMVC</servlet-name>
+<<<<<<< HEAD
         <url-pattern>/</url-pattern>
+=======
+        <url-pattern>*.action</url-pattern>
+>>>>>>> 888a1537257960a6a0968ba749301215f0f7cfd6
     </servlet-mapping>
 </web-app>
