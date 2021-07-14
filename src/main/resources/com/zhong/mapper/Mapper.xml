@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace是命名空间，本文件中所命名的语句只在本空间中有效，可以解决映射文件中同名语句的冲突，可以与接口的全限定名做关联，从而实现mapper代理的功能-->
+
+<mapper namespace="com.zhong.mapper.Mapper">
+
+
+
+</mapper>
