@@ -1,0 +1,5 @@
+.idea
+medicineManager.iml
+src/main/resources/jdbc.properties
+target
+src/main/webapp/staticpage/images
