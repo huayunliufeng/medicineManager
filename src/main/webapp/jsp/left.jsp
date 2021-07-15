@@ -53,7 +53,7 @@
 					</tr>
 					<tr>
 						<td height="22" onmouseover="this.style.backgroundColor='#ffffff'" onmouseout="this.style.backgroundColor=''">
-							<a href="${pageContext.request.contextPath}/jsp/baseData/med_list.jsp" target="main" class="sub1">查看药品							</a>
+							<a href="${pageContext.request.contextPath}/med/findMed" target="main" class="sub1">查看药品							</a>
 						</td>
 					</tr>
 					<tr>

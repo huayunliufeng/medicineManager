@@ -1,4 +1,4 @@
-package com.zhong.service;
+package com.zhong.mapper;
 
 import com.zhong.po.Medicine;
 import com.zhong.po.QueryVo;
@@ -8,13 +8,12 @@ import java.util.List;
 
 /**
  * @author 华韵流风
- * @ClassName MedicineService
+ * @ClassName MedicineMapper
  * @Description TODO
- * @Date 2021/7/15 10:27
- * @packageName com.zhong.service
+ * @Date 2021/7/15 16:30
+ * @packageName com.zhong.mapper
  */
-public interface MedicineService {
-
+public interface MedicineMapper {
     /**
      *添加药品
      *
@@ -25,10 +24,9 @@ public interface MedicineService {
     /**
      * 查询所有药品
      *
-     * @param vo vo
      * @return Page<Medicine>
      */
-    Page<Medicine> findAllMedicine(QueryVo vo);
+    List<Medicine> findAllMedicine();
 
     /**
      * 查询该编号是否存在

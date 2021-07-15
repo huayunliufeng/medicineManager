@@ -41,10 +41,10 @@ public class MainController {
         return "left";
     }
 
-    @GetMapping(value = "toMedList")
+    /*@GetMapping(value = "toMedList")
     public String getMedList(){
-        return "baseData/med_list";
-    }
+        return "forward:/med/findMed";
+    }*/
 
     @GetMapping(value = "/toCate")
     public String getCategory(Model model){

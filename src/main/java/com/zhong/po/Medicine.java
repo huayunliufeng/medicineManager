@@ -9,15 +9,29 @@ package com.zhong.po;
  */
 public class Medicine {
 
-    private int id;
+    private Integer id;
     private String medNo;
     private String name;
     private String factoryAdd;
     private String description;
-    private double price;
-    private int medCount;
+    private Double price;
+    private Integer medCount;
     private String photoPath;
-    private int categoryId;
+    private Integer categoryId;
+
+    public Medicine() {
+    }
+
+    public Medicine(String medNo, String name, String factoryAdd, String description, Double price, Integer medCount, String photoPath, Integer categoryId) {
+        this.medNo = medNo;
+        this.name = name;
+        this.factoryAdd = factoryAdd;
+        this.description = description;
+        this.price = price;
+        this.medCount = medCount;
+        this.photoPath = photoPath;
+        this.categoryId = categoryId;
+    }
 
     @Override
     public String toString() {
@@ -34,11 +48,11 @@ public class Medicine {
                 '}';
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -74,19 +88,19 @@ public class Medicine {
         this.description = description;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public int getMedCount() {
+    public Integer getMedCount() {
         return medCount;
     }
 
-    public void setMedCount(int medCount) {
+    public void setMedCount(Integer medCount) {
         this.medCount = medCount;
     }
 
@@ -98,11 +112,11 @@ public class Medicine {
         this.photoPath = photoPath;
     }
 
-    public int getCategoryId() {
+    public Integer getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(int categoryId) {
+    public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
     }
 }

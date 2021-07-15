@@ -32,4 +32,10 @@
     <!--  配置自定义异常解析器  -->
     <bean class="com.zhong.utils.CustomExceptionHandler"/>
 
+    <!--  文件上传  -->
+    <bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+        <property name="maxUploadSize" value="999999"/>
+        <property name="defaultEncoding" value="utf-8"/>
+    </bean>
+
 </beans>
