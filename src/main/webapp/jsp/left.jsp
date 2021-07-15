@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 
@@ -6,8 +7,8 @@
 			var m = "";
 			function menu(num){
 				sub = eval("sub_"+num+".style");
-				if(m != sub){
-					if(m != ""){
+				if(m !== sub){
+					if(m !== ""){
 						m.display = "none";
 					}
 					sub.display='block';
@@ -18,7 +19,7 @@
 				}
 			}
 		</script>
-		<link rel="stylesheet" type="text/css" href="images/styles.css">
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/images/styles.css">
 	    <style type="text/css">
 <!--
 .m1 {
@@ -36,10 +37,10 @@
 </head>
   <body>
     <table border="0" width="200" height="100%" align="right" cellSpacing="0" cellPadding="0" bgcolor="#E0FBC4">
-    	<!-- ҩƷ���� -->
+    	<!-- 药品管理 -->
     	<tr>
-			<td onClick="menu(0)" height="33" background="images/m1.jpg">
-				<font class="m1">ҽҩ����</font>
+			<td onClick="menu(0)" height="33" background="${pageContext.request.contextPath}/static/images/m1.jpg">
+				<font class="m1">医药管理</font>
 			</td>
 		</tr>
 		<tr bgcolor="#E0FBC4">
@@ -47,32 +48,32 @@
 				<table width="80%" align="center">
 					<tr>
 						<td height="22" onmouseover="this.style.backgroundColor='#ffffff'" onmouseout="this.style.backgroundColor=''">
-							<a href="baseData/med_save.html" target="main" class="sub1">����ҩƷ</a>
+							<a href="${pageContext.request.contextPath}/toCate" target="main" class="sub1">添加药品</a>
 						</td>
 					</tr>
 					<tr>
 						<td height="22" onmouseover="this.style.backgroundColor='#ffffff'" onmouseout="this.style.backgroundColor=''">
-							<a href="baseData/med_list.html" target="main" class="sub1">�鿴ҩƷ							</a>
+							<a href="${pageContext.request.contextPath}/jsp/baseData/med_list.jsp" target="main" class="sub1">查看药品							</a>
 						</td>
 					</tr>
 					<tr>
 						<td height="22" onmouseover="this.style.backgroundColor='#ffffff'" onmouseout="this.style.backgroundColor=''">
-							<a href="baseData/med_query.html" target="main" class="sub1">�߼���ѯ</a>
+							<a href="${pageContext.request.contextPath}/jsp/baseData/med_query.html" target="main" class="sub1">高级查询</a>
 						</td>
 					</tr>
 					<tr>
 						<td height="22" onmouseover="this.style.backgroundColor='#ffffff'" onmouseout="this.style.backgroundColor=''">
-							<a href="baseData/med_count.html" target="main" class="sub1">�鿴���</a>
+							<a href="${pageContext.request.contextPath}/jsp/baseData/med_count.html" target="main" class="sub1">查看库存</a>
 						</td>
 					</tr>
 				</table>
 			</td>
 		</tr>
-    	<!-- ������ -->
+    	<!-- 类别管理 -->
     	<tr>
-			<td onClick="menu(1)" height="33" background="images/m1.jpg">
+			<td onClick="menu(1)" height="33" background="${pageContext.request.contextPath}/static/images/m1.jpg">
 				<font class="m1">
-					������
+					类别管理
 				</font>
 			</td>
 		</tr>
@@ -81,22 +82,22 @@
 				<table width="80%" align="center">
 					<tr>
 						<td height="22" onmouseover="this.style.backgroundColor='#ffffff'" onmouseout="this.style.backgroundColor=''">
-							<a href="baseData/category_add.html" target="main" class="sub1">�������</a>
+							<a href="${pageContext.request.contextPath}/jsp/baseData/category_add.html" target="main" class="sub1">添加类别</a>
 						</td>
 					</tr>
 					<tr>
 						<td height="22" onmouseover="this.style.backgroundColor='#ffffff'" onmouseout="this.style.backgroundColor=''">
-							<a href="baseData/category_list.html" target="main" class="sub1">�鿴���</a>
+							<a href="${pageContext.request.contextPath}/jsp/baseData/category_list.html" target="main" class="sub1">查看类别</a>
 						</td>
 					</tr>					
 				</table>
 			</td>
 		</tr>
-		<!-- ����ҩƷ -->
+		<!-- 购买药品 -->
     	<tr>
-			<td onClick="menu(2)" height="33" background="images/m1.jpg">
+			<td onClick="menu(2)" height="33" background="${pageContext.request.contextPath}/static/images/m1.jpg">
 				<font class="m1">
-				����ҩƷ
+				购买药品
 				</font>
 			</td>
 		</tr>
@@ -105,17 +106,17 @@
 				<table width="80%" align="center">
 					<tr>
 						<td height="22" onmouseover="this.style.backgroundColor='#ffffff'" onmouseout="this.style.backgroundColor=''">
-							<a href="baseData/med_sell.html" target="main" class="sub1">ѡ��ҩƷ</a>
+							<a href="${pageContext.request.contextPath}/jsp/baseData/med_sell.html" target="main" class="sub1">选购药品</a>
 						</td>
 					</tr>					
 				</table>
 			</td>
 		</tr>
-		<!-- ���۹��� -->
+		<!-- 销售管理 -->
     	<tr>
-			<td onClick="menu(3)" height="33" background="images/m1.jpg">
+			<td onClick="menu(3)" height="33" background="${pageContext.request.contextPath}/static/images/m1.jpg">
 				<font class="m1">
-				���۹���
+				销售管理
 				</font>
 			</td>
 		</tr>
@@ -124,23 +125,23 @@
 				<table width="80%" align="center">
 					<tr>
 						<td height="22" onmouseover="this.style.backgroundColor='#ffffff'" onmouseout="this.style.backgroundColor=''">
-							<a href="sell/sell_list.html" target="main" class="sub1">�鿴��ϸ</a>
+							<a href="${pageContext.request.contextPath}/jsp/sell/sell_list.html" target="main" class="sub1">查看明细</a>
 						</td>
 					</tr>
 					<tr>
 						<td height="22" onmouseover="this.style.backgroundColor='#ffffff'" onmouseout="this.style.backgroundColor=''">
-							<a href="sell/sell_query.html" target="main" class="sub1">���ڲ�ѯ</a>
+							<a href="${pageContext.request.contextPath}/jsp/sell/sell_query.html" target="main" class="sub1">日期查询</a>
 						</td>
 					</tr>					
 				</table>
 			</td>
 		</tr>
 		
-	<!-- ϵͳ���� -->
+	<!-- 系统管理 -->
     	<tr>
-			<td onClick="menu(5)" height="33" background="images/m1.jpg">
+			<td onClick="menu(5)" height="33" background="${pageContext.request.contextPath}/static/images/m1.jpg">
 				<font class="m1">
-				ϵͳ����
+				系统管理
 				</font>
 			</td>
 		</tr>
@@ -149,22 +150,22 @@
 				<table width="80%" align="center">
 					<tr>
 						<td height="22" onmouseover="this.style.backgroundColor='#ffffff'" onmouseout="this.style.backgroundColor=''">
-							<a href="system/user_add.html" target="main" class="sub1">���ӹ���Ա</a>
+							<a href="${pageContext.request.contextPath}/jsp/system/user_add.html" target="main" class="sub1">添加管理员</a>
 						</td>
 					</tr>
 					<tr>
 						<td height="22" onmouseover="this.style.backgroundColor='#ffffff'" onmouseout="this.style.backgroundColor=''">
-							<a href="system/user_list.html" target="main" class="sub1">�鿴���й���Ա</a>
+							<a href="${pageContext.request.contextPath}/jsp/system/user_list.html" target="main" class="sub1">查看所有管理员</a>
 						</td>
 					</tr>
 					<tr>
 						<td height="22" onmouseover="this.style.backgroundColor='#ffffff'" onmouseout="this.style.backgroundColor=''">
-							<a href="system/user_password.html" target="main" class="sub1">�޸�����</a>
+							<a href="${pageContext.request.contextPath}/jsp/system/user_password.html" target="main" class="sub1">修改密码</a>
 						</td>
 					</tr>					
 					<tr>
 						<td height="22" onmouseover="this.style.backgroundColor='#ffffff'" onmouseout="this.style.backgroundColor=''">
-							<a href="login.html" target="_top" class="sub1">�˳�ϵͳ</a>
+							<a href="${pageContext.request.contextPath}/jsp/login.html" target="_top" class="sub1">退出系统</a>
 						</td>
 					</tr>
 				</table>

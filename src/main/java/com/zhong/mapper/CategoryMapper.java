@@ -1,4 +1,4 @@
-package com.zhong.service;
+package com.zhong.mapper;
 
 import com.zhong.po.Category;
 
@@ -6,13 +6,12 @@ import java.util.List;
 
 /**
  * @author 华韵流风
- * @ClassName CategoryService
+ * @ClassName CategoryMapper
  * @Description TODO
- * @Date 2021/7/15 10:27
- * @packageName com.zhong.service
+ * @Date 2021/7/15 15:05
+ * @packageName com.zhong.mapper
  */
-
-public interface CategoryService {
+public interface CategoryMapper {
 
     /**
      * 查询所有的分类

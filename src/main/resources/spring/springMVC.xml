@@ -11,12 +11,12 @@
     <mvc:annotation-driven/>
     <!--  内部视图解析器  -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="prefix" value="/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
 
     <!--  处理静态资源  -->
-    <mvc:resources mapping="/staticpage/**" location="/staticpage/"/>
+    <mvc:resources mapping="/static/**" location="/static/"/>
 
     <!--  配置拦截器  -->
     <mvc:interceptors>

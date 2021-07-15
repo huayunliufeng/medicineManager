@@ -1,4 +1,4 @@
-<%@ page language="java" pageEncoding="GBK"%>
+<%@ page language="java" pageEncoding="utf-8"%>
 
 <%@ taglib uri="http://jakarta.apache.org/struts/tags-bean" prefix="bean" %>
 <%@ taglib uri="http://jakarta.apache.org/struts/tags-html" prefix="html" %>
@@ -15,7 +15,7 @@
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<link rel="stylesheet" type="text/css" href="../images/styles.css">
+	<link rel="stylesheet" type="text/css" href="../../../staticpage/images/styles.css">
   </head>
   <body>
   <div class="div1">
@@ -23,7 +23,7 @@
 			align="center">
 			<tr>
 				<td class="td_title1">
-					��<bean:message key="system.current.place"/>��
+					·<bean:message key="system.current.place"/>：
 					<bean:message key="system.category.sell"/>
 					&gt;&gt; <bean:message key="system.category.sell.sep"/>
 				</td>
@@ -54,8 +54,8 @@
 	        					<bean:message key="system.money"/>
 						</td>
 	        			<td>
-	        				<html:link href="../require/require.do?command=update" paramId="id" paramName="ele" paramProperty="medId">����</html:link>
-	        				<html:link href="../baseData/med.do?command=view" paramId="id" paramName="ele" paramProperty="medId">�鿴ҩƷ</html:link>
+	        				<html:link href="../require/require.do?command=update" paramId="id" paramName="ele" paramProperty="medId">进货</html:link>
+	        				<html:link href="../baseData/med.do?command=view" paramId="id" paramName="ele" paramProperty="medId">查看药品</html:link>
 	        			</td>
 	        		</tr>
 	        	</logic:iterate>

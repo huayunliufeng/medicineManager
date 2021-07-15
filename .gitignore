@@ -1,5 +1,6 @@
 .idea
 medicineManager.iml
 src/main/resources/jdbc.properties
+.gitignore
 target
-src/main/webapp/staticpage/images
+src/main/webapp/static/images
