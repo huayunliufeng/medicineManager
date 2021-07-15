@@ -2,10 +2,11 @@ package com.zhong.service;
 
 /**
  * @author 华韵流风
- * @ClassName Service
+ * @ClassName CategoryService
  * @Description TODO
- * @Date 2021/7/15 1:21
+ * @Date 2021/7/15 10:27
  * @packageName com.zhong.service
  */
-public interface Service {
+
+public interface CategoryService {
 }

@@ -8,7 +8,6 @@
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="datasource"/>
     </bean>
-
     <!--  事务通知  -->
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
         <tx:attributes>

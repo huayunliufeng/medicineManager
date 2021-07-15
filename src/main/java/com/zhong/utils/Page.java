@@ -2,6 +2,9 @@ package com.zhong.utils;
 
 import java.util.List;
 
+/**
+ * @author 华韵流风
+ */
 public class Page<T> {
 
 	private int total;

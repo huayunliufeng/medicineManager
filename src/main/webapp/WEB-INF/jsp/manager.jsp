@@ -6,11 +6,11 @@
 	</head>	
 		<frameset rows="180,*" cols="*" framespacing="0" frameborder="no"
 			border="0">
-			<frame src="top.html" name="top" scrolling="NO">
+			<frame src="../../staticpage/top.html" name="top" scrolling="NO">
 			<frameset rows="*" cols="223,*" framespacing="0" frameborder="no"
 				border="0">
-				<frame src="left.html" name="left">
-				<frame src="baseData/med_list.html" name="main">
+				<frame src="../../staticpage/left.html" name="left">
+				<frame src="../../staticpage/baseData/med_list.html" name="main">
 			</frameset>
 		</frameset>
 		<noframes>

@@ -26,6 +26,7 @@
         <property name="maxPoolPreparedStatementPerConnectionSize" value="${jdbc.maxPoolPreparedStatementPerConnectionSize}"/>
     </bean>
 
+
     <!--  配置mybatis的sessionFactory  -->
     <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="configLocation" value="classpath:SqlMapConfig.xml"/>

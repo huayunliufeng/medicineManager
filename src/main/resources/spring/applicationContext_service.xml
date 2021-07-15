@@ -6,4 +6,5 @@
 
     <!--  包扫描  -->
     <context:component-scan base-package="com.zhong.service"/>
+
 </beans>

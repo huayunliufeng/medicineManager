@@ -11,6 +11,7 @@
 无需下载jq，统一使用在线的jq：
 <script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js"></script>
 
+切勿对不属于自己任务的部分进行操作！！！
 切勿更改配置文件及接口等基础代码，切勿修改依赖版本，若有问题请联系我。但某些html文件的后缀可能需要改为jsp，请酌情处理，如果后缀改成了jsp，请将其放在WEB-INF的jsp目录下。
 不要把多余的文件上传。
 

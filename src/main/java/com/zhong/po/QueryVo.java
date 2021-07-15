@@ -2,6 +2,7 @@ package com.zhong.po;
 
 /**
  * @author 华韵流风
+ *
  */
 public class QueryVo {
 	private String custName;

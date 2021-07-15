@@ -10,15 +10,26 @@
     <!--  启用注解  -->
     <mvc:annotation-driven/>
     <!--  内部视图解析器  -->
-    <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
-    </bean>-->
+    </bean>
 
     <!--  处理静态资源  -->
     <mvc:resources mapping="/staticpage/**" location="/staticpage/"/>
 
+    <!--  配置拦截器  -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/cate/*"/>
+            <mvc:mapping path="/med/*"/>
+            <mvc:mapping path="/sell/*"/>
+            <mvc:mapping path="/user/"/>
+            <bean class="com.zhong.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
     <!--  配置自定义异常解析器  -->
-    <!--    <bean class="com.zhong.utils.CustomerHandlerException"/>-->
+    <bean class="com.zhong.utils.CustomExceptionHandler"/>
 
 </beans>
