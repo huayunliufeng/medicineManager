@@ -25,7 +25,7 @@ public class MedicineServiceImpl implements MedicineService {
     @Autowired
     private MedicineMapper medicineMapper;
 
-    public Page<Medicine> findMedicines(QueryVo vo,String keyWord) {
+    public Page<Medicine> findMedicines(QueryVo vo, String keyWord) {
         //设置每页显示数量
         PageHelper.startPage(vo.getPage(), vo.getRows());
         //得到所有的记录数
@@ -54,13 +54,17 @@ public class MedicineServiceImpl implements MedicineService {
     }
 
     public Page<Medicine> findMedByMore(QueryVo vo, Medicine medicine) {
-            //设置每页显示数量
-            PageHelper.startPage(vo.getPage(), vo.getRows());
-            //得到所有的记录数
-            List<Medicine> medicines = medicineMapper.findMedByMore(medicine);
-            //得到分页后的最终结果
-            PageInfo<Medicine> pageInfo = new PageInfo<Medicine>(medicines);
+        //设置每页显示数量
+        PageHelper.startPage(vo.getPage(), vo.getRows());
+        //得到所有的记录数
+        List<Medicine> medicines = medicineMapper.findMedByMore(medicine);
+        //得到分页后的最终结果
+        PageInfo<Medicine> pageInfo = new PageInfo<Medicine>(medicines);
 
-            return new Page<Medicine>((int) pageInfo.getTotal(), pageInfo.getPageNum(), pageInfo.getPageSize(), pageInfo.getList());
+        return new Page<Medicine>((int) pageInfo.getTotal(), pageInfo.getPageNum(), pageInfo.getPageSize(), pageInfo.getList());
+    }
+
+    public void deleteMedicineById(String id) {
+        medicineMapper.deleteMedicineById(id);
     }
 }

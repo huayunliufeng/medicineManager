@@ -17,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.regex.Pattern;
 
 /**
@@ -74,45 +73,45 @@ public class MedicineController {
      * @return string
      */
     @GetMapping(value = "/findMed")
-    public String findMedicine(Model model, QueryVo vo) {
-        Page<Medicine> medicines = medicineService.findMedicines(vo,null);
+    public String findMedicine(Model model, QueryVo vo,String resPage) {
+        Page<Medicine> medicines = medicineService.findMedicines(vo, null);
         model.addAttribute("page", medicines);
-        return "baseData/med_list";
+        model.addAttribute("url", "findMed");
+        return resPage;
     }
 
     /**
      * 检查药品编号是否重复
      */
-    @GetMapping(value = "/checkMedNo",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value = "/checkMedNo", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
     public String checkMedNo(String medNo) {
         //检查格式：字母加数字
         String pattern = "^[A-Za-z]\\w+";
         boolean isMatch = Pattern.matches(pattern, medNo);
-        if(!isMatch){
+        if (!isMatch) {
             return "ERROR";
         }
 
         int count = medicineService.getMedicineByMedNo(medNo);
 
-        if(count == 0){
+        if (count == 0) {
             return "NO";
-        }
-        else{
+        } else {
             return "YES";
         }
 
     }
 
     @GetMapping(value = "/findOneMed/{id}")
-    public String findOneMed(@PathVariable String id,Model model){
+    public String findOneMed(@PathVariable String id, Model model,String resPage) {
         Medicine medicine = medicineService.findOneMedicine(id);
         model.addAttribute("medicine", medicine);
-        return "baseData/med_update";
+        return resPage;
     }
 
     @PostMapping(value = "/updateMed")
-    public ModelAndView updateMedicine(Medicine medicine){
+    public ModelAndView updateMedicine(Medicine medicine) {
         medicineService.updateMedicine(medicine);
 
         ModelAndView mav = new ModelAndView();
@@ -122,19 +121,39 @@ public class MedicineController {
 
     }
 
-    @PostMapping(value = "fuQue")
-    public String fuzzyQuery(Model model,String keyWord,QueryVo vo){
+    @GetMapping(value = "/fuQue")
+    public String fuzzyQuery(Model model, String keyWord, QueryVo vo, String queryPage) {
         Page<Medicine> medicines = medicineService.findMedicines(vo, keyWord.trim());
         model.addAttribute("page", medicines);
-        return "baseData/med_list";
+        model.addAttribute("url", "fuQue");
+        return "baseData/" + queryPage;
     }
 
 
-    @PostMapping(value = "findByMore")
-    public String findMedByMedMoreConditions(Model model,QueryVo vo,Medicine medicine){
-        Page<Medicine> medicineList = medicineService.findMedByMore(vo,medicine);
-        model.addAttribute("page",medicineList);
-        return "baseData/med_list";
+    @GetMapping(value = "/findByMore")
+    public String findMedByMedMoreConditions(Model model, QueryVo vo, Medicine medicine, String queryPage) {
+
+        medicine.setMedNo(medicine.getMedNo().trim());
+        medicine.setName(medicine.getName().trim());
+        medicine.setDescription(medicine.getDescription().trim());
+        medicine.setFactoryAdd(medicine.getFactoryAdd().trim());
+
+        Page<Medicine> medicineList = medicineService.findMedByMore(vo, medicine);
+        model.addAttribute("page", medicineList);
+        model.addAttribute("url", "findByMore");
+        return "baseData/" + queryPage;
+    }
+
+    @GetMapping(value = "/delMed/{id}")
+    public ModelAndView deleteMedicine(@PathVariable String id) {
+
+        medicineService.deleteMedicineById(id);
+
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("info", "删除成功！");
+        mav.setViewName("info");
+        return mav;
+
     }
 
 

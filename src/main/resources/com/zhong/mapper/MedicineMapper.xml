@@ -44,8 +44,6 @@
         where id = #{id}
     </update>
 
-
-
     <select id="findMedByMore" parameterType="Medicine" resultType="Medicine">
         select * from tb_medicine
         <where>
@@ -63,5 +61,11 @@
             </if>
         </where>
     </select>
+
+    <delete id="deleteMedicineById" parameterType="String">
+        delete
+        from tb_medicine
+        where id = #{id}
+    </delete>
 
 </mapper>

@@ -11,7 +11,7 @@
 			<frameset rows="*" cols="223,*" framespacing="0" frameborder="no"
 				border="0">
 				<frame src="${pageContext.request.contextPath}/toLeft" name="left">
-				<frame src="${pageContext.request.contextPath}/med/findMed" name="main">
+				<frame src="${pageContext.request.contextPath}/med/findMed?resPage=baseData/med_list" name="main">
 			</frameset>
 		</frameset>
 		<noframes>

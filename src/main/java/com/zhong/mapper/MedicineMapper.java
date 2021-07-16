@@ -50,8 +50,19 @@ public interface MedicineMapper {
      */
     void updateMedicine(Medicine medicine);
 
-
-
+    /**
+     * 高级查询
+     *
+     * @param medicine medicine
+     * @return List<Medicine>
+     */
     List<Medicine> findMedByMore(Medicine medicine);
+
+    /**
+     * 删除药品
+     *
+     * @param id id
+     */
+    void deleteMedicineById(String id);
 
 }

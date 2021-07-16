@@ -1,15 +1,15 @@
-package com.zhong.service;
+package com.zhong.mapper;
 
 import com.zhong.po.SellDetail;
 
 /**
  * @author 华韵流风
- * @ClassName SellService
+ * @ClassName SellMapper
  * @Description TODO
- * @Date 2021/7/15 10:27
- * @packageName com.zhong.service
+ * @Date 2021/7/16 20:07
+ * @packageName com.zhong.mapper
  */
-public interface SellService {
+public interface SellMapper {
 
     /**
      * 添加订单

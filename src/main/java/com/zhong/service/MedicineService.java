@@ -54,10 +54,20 @@ public interface MedicineService {
      */
     void updateMedicine(Medicine medicine);
 
-
-
-
-
+    /**
+     * 高级查询
+     *
+     * @param vo vo
+     * @param medicine medicine
+     * @return Page<Medicine>
+     */
     Page<Medicine> findMedByMore(QueryVo vo,Medicine medicine);
+
+    /**
+     * 删除药品
+     *
+     * @param id id
+     */
+    void deleteMedicineById(String id);
 
 }

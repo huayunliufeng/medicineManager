@@ -5,7 +5,7 @@
 <html>
 <head>
     <title><bean:message key="system.category.medicine.query" /></title>
-    <link rel="stylesheet" type="text/css" href="../images/styles.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/images/styles.css">
 </head>
 <body>
 
@@ -17,8 +17,8 @@
         <tr>
             <td bgcolor="#FFFFFF" height="50">
                 <br>
-                <form action="${pageContext.request.contextPath}/med/findByMore" method="post" focus="name">
-                    <input type="hidden" name="command" value="query" />
+                <form action="${pageContext.request.contextPath}/med/findByMore" method="get" focus="name">
+                    <input type="hidden" name="queryPage" value="med_list" />
                     <table border="0" align="center" width="450">
                         <tr>
                             <td align="right">药品编码：</td>
