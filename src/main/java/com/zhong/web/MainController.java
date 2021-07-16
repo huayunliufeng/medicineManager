@@ -41,11 +41,6 @@ public class MainController {
         return "left";
     }
 
-    /*@GetMapping(value = "toMedList")
-    public String getMedList(){
-        return "forward:/med/findMed";
-    }*/
-
     @GetMapping(value = "/toCate")
     public String getCategory(Model model){
         List<Category> categorys = categoryService.findAllCategory();

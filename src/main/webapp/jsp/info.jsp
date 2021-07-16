@@ -27,12 +27,12 @@
     <script>
 
         $(function () {
-            let time = 5;
+            let time = 3;
             setInterval(function () {
                 $("#time").text(time);
                 time--;
                 if (time <= 0) {
-                    history.go(-2);
+                    parent.location.reload();
                 }
             }, 1000);
         });
@@ -41,6 +41,6 @@
 </head>
 <body>
 <h3>${info}</h3>
-<p>页面将在&nbsp;&nbsp;<span id="time">5</span>&nbsp;&nbsp;秒中之后关闭……</p>
+<p>页面将在&nbsp;&nbsp;<span id="time">3</span>&nbsp;&nbsp;秒中之后关闭……</p>
 </body>
 </html>

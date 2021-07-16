@@ -17,6 +17,7 @@
 
     <!--  处理静态资源  -->
     <mvc:resources mapping="/static/**" location="/static/"/>
+    <mvc:resources mapping="/jsp/**" location="/jsp/"/>
 
     <!--  配置拦截器  -->
     <mvc:interceptors>

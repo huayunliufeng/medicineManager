@@ -11,9 +11,16 @@
 
     </insert>
 
-    <select id="findAllMedicine" resultType="Medicine">
+    <sql id="findMedicine">
+        <where>
+            <if test="keyWord != null">name like '%${keyWord}%' or factoryAdd like '%${keyWord}%'</if>
+        </where>
+    </sql>
+
+    <select id="findMedicines" parameterType="String" resultType="Medicine">
         select *
         from tb_medicine
+        <include refid="findMedicine"/>
     </select>
 
     <select id="getMedicineByMedNo" parameterType="String" resultType="Integer">
@@ -21,6 +28,22 @@
         from tb_medicine
         where medNo = #{medNo}
     </select>
+
+    <select id="findOneMedicine" parameterType="String" resultType="Medicine">
+        select *
+        from tb_medicine
+        where id = #{id}
+    </select>
+
+    <update id="updateMedicine" parameterType="Medicine">
+        update tb_medicine
+        set price=#{price},
+            medCount=#{medCount},
+            factoryAdd=#{factoryAdd},
+            description=#{description}
+        where id = #{id}
+    </update>
+
 
 
 </mapper>

@@ -1,8 +1,6 @@
 package com.zhong.mapper;
 
 import com.zhong.po.Medicine;
-import com.zhong.po.QueryVo;
-import com.zhong.utils.Page;
 
 import java.util.List;
 
@@ -24,9 +22,10 @@ public interface MedicineMapper {
     /**
      * 查询所有药品
      *
+     * @param keyWord keyWord
      * @return Page<Medicine>
      */
-    List<Medicine> findAllMedicine();
+    List<Medicine> findMedicines(String keyWord);
 
     /**
      * 查询该编号是否存在
@@ -35,6 +34,21 @@ public interface MedicineMapper {
      * @return int
      */
     int getMedicineByMedNo(String medNo);
+
+    /**
+     * 查询单个药品
+     *
+     * @param id id
+     * @return Medicine
+     */
+    Medicine findOneMedicine(String id);
+
+    /**
+     * 更新药品
+     *
+     * @param medicine medicine
+     */
+    void updateMedicine(Medicine medicine);
 
 
 }

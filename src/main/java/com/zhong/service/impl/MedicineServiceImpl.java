@@ -25,11 +25,11 @@ public class MedicineServiceImpl implements MedicineService {
     @Autowired
     private MedicineMapper medicineMapper;
 
-    public Page<Medicine> findAllMedicine(QueryVo vo) {
+    public Page<Medicine> findMedicines(QueryVo vo,String keyWord) {
         //设置每页显示数量
         PageHelper.startPage(vo.getPage(), vo.getRows());
         //得到所有的记录数
-        List<Medicine> medicines = medicineMapper.findAllMedicine();
+        List<Medicine> medicines = medicineMapper.findMedicines(keyWord);
         //得到分页后的最终结果
         PageInfo<Medicine> pageInfo = new PageInfo<Medicine>(medicines);
 
@@ -45,5 +45,11 @@ public class MedicineServiceImpl implements MedicineService {
         return medicineMapper.getMedicineByMedNo(medNo);
     }
 
+    public Medicine findOneMedicine(String id) {
+        return medicineMapper.findOneMedicine(id);
+    }
 
+    public void updateMedicine(Medicine medicine) {
+        medicineMapper.updateMedicine(medicine);
+    }
 }

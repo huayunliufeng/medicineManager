@@ -10,7 +10,7 @@
   <head>
     <title>error</title>
 
-	<link rel="stylesheet" type="text/css" href="../images/styles.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/images/styles.css">
   </head>
   <body>
     <div class="div1">

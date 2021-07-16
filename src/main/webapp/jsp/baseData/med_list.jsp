@@ -2,13 +2,17 @@
 <%@ taglib prefix="pg" uri="http://wanggang.cn/common/" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE>
 <html>
 <head>
     <title></title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/images/styles.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/images/bootstrap.min.css">
+    <script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js"></script>
 
+    <script>
+
+    </script>
 </head>
 <body>
 <div class="div1">
@@ -28,10 +32,8 @@
                             <table border="0" width="100%">
                                 <tr>
                                     <td align="left">
-                                        <form action='med_list.jsp' method="post" onsubmit="return blurQuery();"
-                                              class="blur_form">
-                                            <input type="hidden" name="command" value="blurQuery"/>
-                                            模糊查询：<input name="keyWord" type="text" size="20" value="按名称或出厂地址"/>
+                                        <form action='${pageContext.request.contextPath}/med/fuQue' method="post" class="blur_form">
+                                            模糊查询：<input name="keyWord" type="text" placeholder="按名称或出厂地址" size="20"/>
                                             <input type="submit" value="查询"/>
                                         </form>
                                     </td>
@@ -56,7 +58,7 @@
                             <td>${medicine.price}元</td>
                             <td>${medicine.medCount}</td>
                             <td>${medicine.factoryAdd}</td>
-                            <td><a href="med_update.html">修改</a>&nbsp; <a href="med_list">删除</a></td>
+                            <td><a href="${pageContext.request.contextPath}/med/findOneMed/${medicine.id}">修改</a>&nbsp; <a href="med_list">删除</a></td>
                         </tr>
                     </c:forEach>
                     <tr bgcolor="#FFFFFF">

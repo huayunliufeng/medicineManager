@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -77,7 +74,7 @@ public class MedicineController {
      */
     @GetMapping(value = "/findMed")
     public String findMedicine(Model model, QueryVo vo) {
-        Page<Medicine> medicines = medicineService.findAllMedicine(vo);
+        Page<Medicine> medicines = medicineService.findMedicines(vo,null);
         model.addAttribute("page", medicines);
         return "baseData/med_list";
     }
@@ -104,6 +101,31 @@ public class MedicineController {
             return "YES";
         }
 
+    }
+
+    @GetMapping(value = "/findOneMed/{id}")
+    public String findOneMed(@PathVariable String id,Model model){
+        Medicine medicine = medicineService.findOneMedicine(id);
+        model.addAttribute("medicine", medicine);
+        return "baseData/med_update";
+    }
+
+    @PostMapping(value = "/updateMed")
+    public ModelAndView updateMedicine(Medicine medicine){
+        medicineService.updateMedicine(medicine);
+
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("info", "更新成功！");
+        mav.setViewName("info");
+        return mav;
+
+    }
+
+    @PostMapping(value = "fuQue")
+    public String fuzzyQuery(Model model,String keyWord,QueryVo vo){
+        Page<Medicine> medicines = medicineService.findMedicines(vo, keyWord.trim());
+        model.addAttribute("page", medicines);
+        return "baseData/med_list";
     }
 
 
