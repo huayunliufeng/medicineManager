@@ -1,5 +1,8 @@
 package com.zhong.service;
 
+import com.zhong.po.AdminUser;
+import org.apache.ibatis.annotations.Param;
+
 /**
  * @author 华韵流风
  * @ClassName MainService
@@ -8,4 +11,12 @@ package com.zhong.service;
  * @packageName com.zhong.service
  */
 public interface MainService {
+
+    /**
+     * 用户登入
+     * @param username
+     * @param password
+     * @return
+     */
+    AdminUser userLogin ( String username, String password);
 }
