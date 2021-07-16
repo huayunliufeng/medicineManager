@@ -58,12 +58,12 @@
 					</tr>
 					<tr>
 						<td height="22" onmouseover="this.style.backgroundColor='#ffffff'" onmouseout="this.style.backgroundColor=''">
-							<a href="${pageContext.request.contextPath}/jsp/baseData/med_query.html" target="main" class="sub1">高级查询</a>
+							<a href="${pageContext.request.contextPath}/jsp/baseData/med_query.jsp" target="main" class="sub1">高级查询</a>
 						</td>
 					</tr>
 					<tr>
 						<td height="22" onmouseover="this.style.backgroundColor='#ffffff'" onmouseout="this.style.backgroundColor=''">
-							<a href="${pageContext.request.contextPath}/jsp/baseData/med_count.html" target="main" class="sub1">查看库存</a>
+							<a href="${pageContext.request.contextPath}/jsp/baseData/med_count.jsp" target="main" class="sub1">查看库存</a>
 						</td>
 					</tr>
 				</table>

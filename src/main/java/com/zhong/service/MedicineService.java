@@ -57,4 +57,7 @@ public interface MedicineService {
 
 
 
+
+    Page<Medicine> findMedByMore(QueryVo vo,Medicine medicine);
+
 }

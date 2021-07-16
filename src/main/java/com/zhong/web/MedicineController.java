@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.regex.Pattern;
 
 /**
@@ -125,6 +126,14 @@ public class MedicineController {
     public String fuzzyQuery(Model model,String keyWord,QueryVo vo){
         Page<Medicine> medicines = medicineService.findMedicines(vo, keyWord.trim());
         model.addAttribute("page", medicines);
+        return "baseData/med_list";
+    }
+
+
+    @PostMapping(value = "findByMore")
+    public String findMedByMedMoreConditions(Model model,QueryVo vo,Medicine medicine){
+        Page<Medicine> medicineList = medicineService.findMedByMore(vo,medicine);
+        model.addAttribute("page",medicineList);
         return "baseData/med_list";
     }
 

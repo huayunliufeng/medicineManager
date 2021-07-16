@@ -52,4 +52,15 @@ public class MedicineServiceImpl implements MedicineService {
     public void updateMedicine(Medicine medicine) {
         medicineMapper.updateMedicine(medicine);
     }
+
+    public Page<Medicine> findMedByMore(QueryVo vo, Medicine medicine) {
+            //设置每页显示数量
+            PageHelper.startPage(vo.getPage(), vo.getRows());
+            //得到所有的记录数
+            List<Medicine> medicines = medicineMapper.findMedByMore(medicine);
+            //得到分页后的最终结果
+            PageInfo<Medicine> pageInfo = new PageInfo<Medicine>(medicines);
+
+            return new Page<Medicine>((int) pageInfo.getTotal(), pageInfo.getPageNum(), pageInfo.getPageSize(), pageInfo.getList());
+    }
 }

@@ -46,4 +46,22 @@
 
 
 
+    <select id="findMedByMore" parameterType="Medicine" resultType="Medicine">
+        select * from tb_medicine
+        <where>
+            <if test="medNo != null and medNo != '' ">
+                and medNo like '%${medNo}%'
+            </if>
+            <if test="name !=null and name != ''">
+                and `name` like '%${name}%'
+            </if>
+            <if test="factoryAdd != null and factoryAdd != ''">
+                and factoryAdd like '%${factoryAdd}%'
+            </if>
+            <if test="description != null and description != ''">
+                and description like '%${description}%'
+            </if>
+        </where>
+    </select>
+
 </mapper>

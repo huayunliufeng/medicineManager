@@ -51,4 +51,7 @@ public interface MedicineMapper {
     void updateMedicine(Medicine medicine);
 
 
+
+    List<Medicine> findMedByMore(Medicine medicine);
+
 }

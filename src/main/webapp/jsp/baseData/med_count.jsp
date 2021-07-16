@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="pg" uri="http://wanggang.cn/common/" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
@@ -10,7 +13,7 @@
 		<table width="100%" cellpadding="0" cellspacing="0" border="0"
 			align="center">
 			<tr>
-				<td class="td_title1">µ±Ç°Î»ÖÃ¡¤:Ò½Ò©¹ÜÀí&gt;&gt; ²é¿´¿â´æ</td>
+				<td class="td_title1">ï¿½ï¿½Ç°Î»ï¿½Ã¡ï¿½:Ò½Ò©ï¿½ï¿½ï¿½ï¿½&gt;&gt; ï¿½é¿´ï¿½ï¿½ï¿½</td>
 			</tr>
 			<tr>
 				<td bgcolor="#FFFFFF" height="100" valign="top">
@@ -20,14 +23,14 @@
       <table border="0" align="center" width="450">
         <tr>
           <td align="center">
-          	¿â´æÊýÁ¿£º
+          	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
           	<select name="type">
 				<option value="0">=</option>
 				<option value="1">&gt;</option>
 				<option value="-1">&lt;</option>
 			</select>
 			<input type="text" name="count" size="5" />
-			<input type="submit" value="²éÑ¯"/>
+			<input type="submit" value="ï¿½ï¿½Ñ¯"/>
           </td>
         </tr>
       </table>
