@@ -2,6 +2,7 @@ package com.zhong.web;
 
 import com.zhong.po.AdminUser;
 import com.zhong.po.Category;
+import com.zhong.po.SelectException;
 import com.zhong.service.CategoryService;
 import com.zhong.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,11 @@ public class MainController {
     @Autowired
     private MainService mainService;
 
+    /**
+     * 登录
+     *
+     * @return String
+     */
     @GetMapping(value = "/login")
     public String getLogin() {
         return "login";
@@ -54,19 +60,40 @@ public class MainController {
         }
     }
 
+    /**
+     * 得到top
+     *
+     * @return String
+     */
     @GetMapping(value = "/toTop")
     public String getTop() {
         return "top";
     }
 
+    /**
+     * 得到left
+     *
+     * @return String
+     */
     @GetMapping(value = "/toLeft")
     public String getLeft() {
         return "left";
     }
 
+    /**
+     * 查询分类信息
+     *
+     * @param model model
+     * @return String
+     */
     @GetMapping(value = "/toCate")
     public String getCategory(Model model) {
-        List<Category> categorys = categoryService.findAllCategory();
+        List<Category> categorys;
+        try {
+            categorys = categoryService.findAllCategory();
+        } catch (Exception e) {
+            throw new SelectException("查询分类信息失败！");
+        }
         model.addAttribute("categorys", categorys);
         return "baseData/med_save";
     }

@@ -1,5 +1,6 @@
 package com.zhong.service;
 
+import com.zhong.po.Medicine;
 import com.zhong.po.QueryVo;
 import com.zhong.po.SellDetail;
 import com.zhong.utils.Page;
@@ -19,7 +20,6 @@ public interface SellService {
      * @param sellDetail sellDetail
      */
     void addSellDetail(SellDetail sellDetail);
-
 
     /**
      * 查询订单
@@ -46,5 +46,13 @@ public interface SellService {
      * @param id id
      */
     void deleteSellById(String id);
+
+    /**
+     * 查询订单里的药品信息
+     *
+     * @param id id
+     * @return Medicine
+     */
+    Medicine findOneMedicineById(String id);
 
 }

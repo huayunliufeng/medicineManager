@@ -3,6 +3,7 @@ package com.zhong.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zhong.mapper.SellMapper;
+import com.zhong.po.Medicine;
 import com.zhong.po.QueryVo;
 import com.zhong.po.SellDetail;
 import com.zhong.service.SellService;
@@ -49,5 +50,10 @@ public class SellServiceImpl implements SellService {
     @Override
     public void deleteSellById(String id) {
         sellMapper.deleteSellById(id);
+    }
+
+    @Override
+    public Medicine findOneMedicineById(String id) {
+        return sellMapper.findOneMedicineById(id);
     }
 }

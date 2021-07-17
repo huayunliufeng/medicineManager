@@ -1,5 +1,6 @@
 package com.zhong.mapper;
 
+import com.zhong.po.Medicine;
 import com.zhong.po.QueryVo;
 import com.zhong.po.SellDetail;
 import com.zhong.utils.Page;
@@ -45,4 +46,12 @@ public interface SellMapper {
      * @param id id
      */
     void deleteSellById(String id);
+
+    /**
+     * 查询订单里的药品信息
+     *
+     * @param id id
+     * @return Medicine
+     */
+    Medicine findOneMedicineById(String id);
 }

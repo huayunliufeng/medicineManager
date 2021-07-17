@@ -40,8 +40,6 @@ public class CategoryController {
     @PostMapping(value = "/addCategory")
     public ModelAndView addCategory(HttpServletRequest request) {
         String time = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss").format(Calendar.getInstance().getTime());
-
-
         Category category = BeanUtil.toBean(request.getParameterMap(), Category.class);
         category.setCreateTime(time);
 
@@ -83,7 +81,7 @@ public class CategoryController {
      * 查询所有分类
      *
      * @param model model
-     * @param vo vo
+     * @param vo    vo
      * @return String
      */
     @GetMapping(value = "/findCategory")
@@ -125,8 +123,8 @@ public class CategoryController {
     /**
      * 查询要修改的分类详细信息
      *
-     * @param id id
-     * @param model model
+     * @param id      id
+     * @param model   model
      * @param resPage resPage
      * @return String
      */
@@ -151,9 +149,9 @@ public class CategoryController {
      */
     @PostMapping(value = "/updateCategory")
     public ModelAndView updateCategory(Category category) {
-        try{
+        try {
             categoryService.updateCategory(category);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new UpdateException("更新药品类别失败！");
         }
         ModelAndView mav = new ModelAndView();

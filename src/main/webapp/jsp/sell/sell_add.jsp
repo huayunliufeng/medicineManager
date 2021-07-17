@@ -15,7 +15,7 @@
 
         let sub = (medCount) => {
             let sellCount = $("input[name='sellCount']");
-            if (sellCount.val() <= 0 || medCount < sellCount.val()) {
+            if (sellCount.val() <= 0 || parseInt(medCount) < parseInt(sellCount.val())) {
                 sellCount.focus();
                 alert("数量填写错误！！！");
             }

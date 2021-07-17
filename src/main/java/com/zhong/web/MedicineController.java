@@ -1,8 +1,6 @@
 package com.zhong.web;
 
-import com.zhong.po.Category;
-import com.zhong.po.Medicine;
-import com.zhong.po.QueryVo;
+import com.zhong.po.*;
 import com.zhong.service.CategoryService;
 import com.zhong.service.MedicineService;
 import com.zhong.utils.BeanUtil;
@@ -59,13 +57,18 @@ public class MedicineController {
         try {
             photoPath.transferTo(new File(path, filename));
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new SelectException(path + "/" + filename + "文件没找到！");
         }
 
-        Medicine medicine1 = BeanUtil.toBean(request.getParameterMap(), Medicine.class);
-        medicine1.setPhotoPath(filename);
+        Medicine medicine = BeanUtil.toBean(request.getParameterMap(), Medicine.class);
+        medicine.setPhotoPath(filename);
 
-        medicineService.addMedicine(medicine1);
+        try {
+            medicineService.addMedicine(medicine);
+        } catch (Exception e) {
+            throw new InsertException("添加药品失败！");
+        }
+
         ModelAndView mav = new ModelAndView();
         mav.addObject("info", "添加成功！");
         mav.setViewName("info");
@@ -82,7 +85,12 @@ public class MedicineController {
      */
     @GetMapping(value = "/findMed")
     public String findMedicine(Model model, QueryVo vo, String resPage) {
-        Page<Medicine> medicines = medicineService.findMedicines(vo, null);
+        Page<Medicine> medicines;
+        try {
+            medicines = medicineService.findMedicines(vo, null);
+        } catch (Exception e) {
+            throw new SelectException("查询分页信息失败！");
+        }
         model.addAttribute("page", medicines);
         model.addAttribute("url", "findMed");
         return resPage;
@@ -111,16 +119,39 @@ public class MedicineController {
 
     }
 
+    /**
+     * 查询药品详情
+     *
+     * @param id      id
+     * @param model   model
+     * @param resPage resPage
+     * @return String
+     */
     @GetMapping(value = "/findOneMed/{id}")
     public String findOneMed(@PathVariable String id, Model model, String resPage) {
-        Medicine medicine = medicineService.findOneMedicine(id);
+        Medicine medicine;
+        try {
+            medicine = medicineService.findOneMedicine(id);
+        } catch (Exception e) {
+            throw new SelectException("查询该药品信息失败！");
+        }
         model.addAttribute("medicine", medicine);
         return resPage;
     }
 
+    /**
+     * 更新药品
+     *
+     * @param medicine medicine
+     * @return ModelAndView
+     */
     @PostMapping(value = "/updateMed")
     public ModelAndView updateMedicine(Medicine medicine) {
-        medicineService.updateMedicine(medicine);
+        try {
+            medicineService.updateMedicine(medicine);
+        } catch (Exception e) {
+            throw new UpdateException("");
+        }
 
         ModelAndView mav = new ModelAndView();
         mav.addObject("info", "更新成功！");
@@ -129,15 +160,38 @@ public class MedicineController {
 
     }
 
+    /**
+     * 模糊查询
+     *
+     * @param model     model
+     * @param keyWord   keyWord
+     * @param vo        vo
+     * @param queryPage queryPage
+     * @return String
+     */
     @GetMapping(value = "/fuQue")
     public String fuzzyQuery(Model model, String keyWord, QueryVo vo, String queryPage) {
-        Page<Medicine> medicines = medicineService.findMedicines(vo, keyWord.trim());
+        Page<Medicine> medicines;
+        try {
+            medicines = medicineService.findMedicines(vo, keyWord.trim());
+        } catch (Exception e) {
+            throw new SelectException("关键词为：" + keyWord + " 的查询失败！");
+        }
         model.addAttribute("page", medicines);
         model.addAttribute("url", "fuQue");
         return "baseData/" + queryPage;
     }
 
 
+    /**
+     * 模糊查询
+     *
+     * @param model     model
+     * @param vo        vo
+     * @param medicine  medicine
+     * @param queryPage queryPage
+     * @return String
+     */
     @GetMapping(value = "/findByMore")
     public String findMedByMedMoreConditions(Model model, QueryVo vo, Medicine medicine, String queryPage) {
 
@@ -146,19 +200,30 @@ public class MedicineController {
         medicine.setDescription(medicine.getDescription().trim());
         medicine.setFactoryAdd(medicine.getFactoryAdd().trim());
 
-        Page<Medicine> medicineList = medicineService.findMedByMore(vo, medicine);
+        Page<Medicine> medicineList;
+        try {
+            medicineList = medicineService.findMedByMore(vo, medicine);
+        } catch (Exception e) {
+            throw new SelectException("模糊查询失败！");
+        }
         model.addAttribute("page", medicineList);
         model.addAttribute("url", "findByMore");
         return "baseData/" + queryPage;
     }
 
+    /**
+     * 删除药品
+     *
+     * @param id id
+     * @return ModelAndView
+     */
     @GetMapping(value = "/delMed/{id}")
     public ModelAndView deleteMedicine(@PathVariable String id) {
 
         try {
             medicineService.deleteMedicineById(id);
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new DeleteException("id为" + id + "的药品删除失败！请确认该药品是否被购买过！");
         }
         ModelAndView mav = new ModelAndView();
         mav.addObject("info", "删除成功！");
@@ -166,34 +231,72 @@ public class MedicineController {
         return mav;
     }
 
+    /**
+     * 得到分类信息
+     *
+     * @param medNo medNo
+     * @param model model
+     * @return String
+     */
     @PostMapping(value = "getSave")
     public String getSave(String medNo, Model model) {
-        List<Category> categorys = categoryService.findAllCategory();
+        List<Category> categorys;
+        try {
+            categorys = categoryService.findAllCategory();
+        } catch (Exception e) {
+            throw new SelectException("获取分类信息失败！");
+        }
         model.addAttribute("categorys", categorys);
         model.addAttribute("medNo", medNo);
         return "require/req_save";
     }
 
+    /**
+     * 渲染药品图片
+     *
+     * @param path     path
+     * @param request  request
+     * @param response response
+     */
     @GetMapping(value = "/drawImg")
-    public void drawImg(String path, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void drawImg(String path, HttpServletRequest request, HttpServletResponse response) {
         String absolutePath = request.getServletContext().getRealPath("/WEB-INF/upload/");
         //得到图片的绝对路径
         String filePath = absolutePath + "/" + path;
-        FileInputStream fis = new FileInputStream(filePath);
-        ServletOutputStream os = response.getOutputStream();
-        int len;
-        byte[] b = new byte[1024];
-        while ((len = fis.read(b)) != -1) {
-            os.write(b, 0, len);
+        try {
+            FileInputStream fis = new FileInputStream(filePath);
+            ServletOutputStream os = response.getOutputStream();
+            int len;
+            byte[] b = new byte[1024];
+            while ((len = fis.read(b)) != -1) {
+                os.write(b, 0, len);
+            }
+            os.flush();
+            os.close();
+            fis.close();
+        } catch (Exception e) {
+            throw new SelectException("文件没找到！" + filePath);
         }
-        os.flush();
-        os.close();
-        fis.close();
     }
 
+    /**
+     * 查看库存
+     *
+     * @param vo        vo
+     * @param type      type
+     * @param medCount  medCount
+     * @param model     model
+     * @param queryPage queryPage
+     * @return
+     */
     @GetMapping(value = "findInventory")
     public String findInventory(QueryVo vo, int type, int medCount, Model model, String queryPage) {
-        Page<Medicine> medicines = medicineService.findMedInventory(vo, type, medCount);
+        Page<Medicine> medicines;
+        try {
+            medicines = medicineService.findMedInventory(vo, type, medCount);
+        } catch (Exception e) {
+            throw new SelectException("查看库存失败！");
+        }
         model.addAttribute("page", medicines);
         model.addAttribute("url", "findInventory");
         return "baseData/" + queryPage;
