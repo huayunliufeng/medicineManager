@@ -75,7 +75,8 @@ public class MedicineServiceImpl implements MedicineService {
         medicineMapper.deleteMedicineById(id);
     }
 
-    public Page<Medicine> findMedInventory(QueryVo vo, int type,int medCount) {
+    @Override
+    public Page<Medicine> findMedInventory(QueryVo vo, int type, int medCount) {
         //设置每页显示数量
         PageHelper.startPage(vo.getPage(), vo.getRows());
         //得到所有的记录数

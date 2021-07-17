@@ -18,6 +18,7 @@ public class MainServiceImpl implements MainService {
     @Autowired
     private MainMapper mainMapper;
 
+    @Override
     public AdminUser userLogin(String username, String password) {
         return mainMapper.userLogin(username,password);
     }

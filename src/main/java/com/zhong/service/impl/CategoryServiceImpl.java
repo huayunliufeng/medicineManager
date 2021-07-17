@@ -27,19 +27,23 @@ public class CategoryServiceImpl implements CategoryService {
     private CategoryMapper categoryMapper;
 
 
+    @Override
     public List<Category> findAllCategory() {
         return categoryMapper.findAllCategory();
     }
 
+    @Override
     public void addCategory(Category category) {
         categoryMapper.addCategory(category);
     }
 
+    @Override
     public int  getCategoryByName(String name) {
         return categoryMapper.getCategoryByName(name);
     }
 
 
+    @Override
     public Page<Category> findCategory(QueryVo vo) {
         //设置每页显示数量
         PageHelper.startPage(vo.getPage(), vo.getRows());
@@ -51,14 +55,17 @@ public class CategoryServiceImpl implements CategoryService {
         return new Page<Category>((int) pageInfo.getTotal(), pageInfo.getPageNum(), pageInfo.getPageSize(), pageInfo.getList());
     }
 
+    @Override
     public void deleteCategoryById(String id) {
         categoryMapper.deleteCategoryById(id);
     }
 
+    @Override
     public Category findOneCategory(String id) {
         return categoryMapper.findOneCategory(id);
     }
 
+    @Override
     public void updateCategory(Category category) {
         categoryMapper.updateCategory(category);
     }

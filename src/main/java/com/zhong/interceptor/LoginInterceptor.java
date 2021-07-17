@@ -1,6 +1,5 @@
 package com.zhong.interceptor;
 
-import com.zhong.po.LoginUser;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
