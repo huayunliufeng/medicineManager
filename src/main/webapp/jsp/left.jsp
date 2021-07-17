@@ -125,12 +125,12 @@
 				<table width="80%" align="center">
 					<tr>
 						<td height="22" onmouseover="this.style.backgroundColor='#ffffff'" onmouseout="this.style.backgroundColor=''">
-							<a href="${pageContext.request.contextPath}/jsp/sell/sell_list.html" target="main" class="sub1">查看明细</a>
+							<a href="${pageContext.request.contextPath}/sell/findSellList?queryPage=sell_list" target="main" class="sub1">查看明细</a>
 						</td>
 					</tr>
 					<tr>
 						<td height="22" onmouseover="this.style.backgroundColor='#ffffff'" onmouseout="this.style.backgroundColor=''">
-							<a href="${pageContext.request.contextPath}/jsp/sell/sell_query.html" target="main" class="sub1">日期查询</a>
+							<a href="${pageContext.request.contextPath}/jsp/sell/sell_query.jsp" target="main" class="sub1">日期查询</a>
 						</td>
 					</tr>					
 				</table>
@@ -165,7 +165,7 @@
 					</tr>					
 					<tr>
 						<td height="22" onmouseover="this.style.backgroundColor='#ffffff'" onmouseout="this.style.backgroundColor=''">
-							<a href="${pageContext.request.contextPath}/jsp/login.html" target="_top" class="sub1">退出系统</a>
+							<a href="${pageContext.request.contextPath}/login" target="_top" class="sub1">退出系统</a>
 						</td>
 					</tr>
 				</table>

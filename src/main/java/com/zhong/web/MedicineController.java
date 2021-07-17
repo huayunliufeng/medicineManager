@@ -14,8 +14,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.regex.Pattern;
 
@@ -73,7 +76,7 @@ public class MedicineController {
      * @return string
      */
     @GetMapping(value = "/findMed")
-    public String findMedicine(Model model, QueryVo vo,String resPage) {
+    public String findMedicine(Model model, QueryVo vo, String resPage) {
         Page<Medicine> medicines = medicineService.findMedicines(vo, null);
         model.addAttribute("page", medicines);
         model.addAttribute("url", "findMed");
@@ -104,7 +107,7 @@ public class MedicineController {
     }
 
     @GetMapping(value = "/findOneMed/{id}")
-    public String findOneMed(@PathVariable String id, Model model,String resPage) {
+    public String findOneMed(@PathVariable String id, Model model, String resPage) {
         Medicine medicine = medicineService.findOneMedicine(id);
         model.addAttribute("medicine", medicine);
         return resPage;
@@ -147,14 +150,32 @@ public class MedicineController {
     @GetMapping(value = "/delMed/{id}")
     public ModelAndView deleteMedicine(@PathVariable String id) {
 
-        medicineService.deleteMedicineById(id);
-
+        try {
+            medicineService.deleteMedicineById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         ModelAndView mav = new ModelAndView();
         mav.addObject("info", "删除成功！");
         mav.setViewName("info");
         return mav;
-
     }
 
+    @GetMapping(value = "/drawImg")
+    public void drawImg(String path, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String absolutePath = request.getServletContext().getRealPath("/WEB-INF/upload/");
+        //得到图片的绝对路径
+        String filePath = absolutePath + "/" + path;
+        FileInputStream fis = new FileInputStream(filePath);
+        ServletOutputStream os = response.getOutputStream();
+        int len;
+        byte[] b = new byte[1024];
+        while ((len = fis.read(b)) != -1) {
+            os.write(b, 0, len);
+        }
+        os.flush();
+        os.close();
+        fis.close();
+    }
 
 }

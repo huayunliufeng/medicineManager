@@ -25,6 +25,7 @@ public class MedicineServiceImpl implements MedicineService {
     @Autowired
     private MedicineMapper medicineMapper;
 
+    @Override
     public Page<Medicine> findMedicines(QueryVo vo, String keyWord) {
         //设置每页显示数量
         PageHelper.startPage(vo.getPage(), vo.getRows());
@@ -37,22 +38,27 @@ public class MedicineServiceImpl implements MedicineService {
     }
 
 
+    @Override
     public void addMedicine(Medicine medicine) {
         medicineMapper.addMedicine(medicine);
     }
 
+    @Override
     public int getMedicineByMedNo(String medNo) {
         return medicineMapper.getMedicineByMedNo(medNo);
     }
 
+    @Override
     public Medicine findOneMedicine(String id) {
         return medicineMapper.findOneMedicine(id);
     }
 
+    @Override
     public void updateMedicine(Medicine medicine) {
         medicineMapper.updateMedicine(medicine);
     }
 
+    @Override
     public Page<Medicine> findMedByMore(QueryVo vo, Medicine medicine) {
         //设置每页显示数量
         PageHelper.startPage(vo.getPage(), vo.getRows());
@@ -64,6 +70,7 @@ public class MedicineServiceImpl implements MedicineService {
         return new Page<Medicine>((int) pageInfo.getTotal(), pageInfo.getPageNum(), pageInfo.getPageSize(), pageInfo.getList());
     }
 
+    @Override
     public void deleteMedicineById(String id) {
         medicineMapper.deleteMedicineById(id);
     }

@@ -1,6 +1,10 @@
 package com.zhong.mapper;
 
+import com.zhong.po.QueryVo;
 import com.zhong.po.SellDetail;
+import com.zhong.utils.Page;
+
+import java.util.List;
 
 /**
  * @author 华韵流风
@@ -17,4 +21,21 @@ public interface SellMapper {
      * @param sellDetail sellDetail
      */
     void addSellDetail(SellDetail sellDetail);
+
+    /**
+     * 查询订单
+     *
+     * @param keyWord keyWord
+     * @return List<SellDetail>
+     */
+    List<SellDetail> findSellDetails(String keyWord);
+
+    /**
+     * 按日期查询订单
+     *
+     * @param begin begin
+     * @param end end
+     * @return List<SellDetail>
+     */
+    List<SellDetail> findSellByData(String begin,String end);
 }

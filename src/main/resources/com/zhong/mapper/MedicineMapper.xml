@@ -30,9 +30,7 @@
     </select>
 
     <select id="findOneMedicine" parameterType="String" resultType="Medicine">
-        select *
-        from tb_medicine
-        where id = #{id}
+        select m.id,m.medNo,m.`name`,m.medCount,s.sellCount demand,m.photoPath,m.price,c.`name` categoryName,m.factoryAdd,m.description from tb_medicine m left join tb_category c on (m.categoryId=c.id) left join tb_selldetail s on (m.id=s.medid) where s.id = #{id}
     </select>
 
     <update id="updateMedicine" parameterType="Medicine">

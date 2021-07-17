@@ -2,13 +2,13 @@ package com.zhong.web;
 
 import com.zhong.po.AdminUser;
 import com.zhong.po.Category;
-import com.zhong.po.LoginUser;
 import com.zhong.service.CategoryService;
 import com.zhong.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -32,7 +32,7 @@ public class MainController {
     @Autowired
     private MainService mainService;
 
-    @GetMapping(value = "/toLogin")
+    @GetMapping(value = "/login")
     public String getLogin() {
         return "login";
     }
@@ -42,21 +42,16 @@ public class MainController {
      *
      * @return 进入or重新输入
      */
-    @GetMapping(value = "/userLogin")
+    @PostMapping(value = "/userLogin")
     public String userLoginFilter(String username, String password) {
         AdminUser user = mainService.userLogin(username, password);
         if (user != null) {
-            LoginUser.setUser(user);
-            return "redirect:toMain";
+            HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+            request.getServletContext().setAttribute("user", user);
+            return "manager";
         } else {
-            return "forward:toLogin";
+            return "login";
         }
-    }
-
-
-    @GetMapping(value = "/toMain")
-    public String getMainView() {
-        return "manager";
     }
 
     @GetMapping(value = "/toTop")
@@ -74,11 +69,6 @@ public class MainController {
         List<Category> categorys = categoryService.findAllCategory();
         model.addAttribute("categorys", categorys);
         return "baseData/med_save";
-    }
-
-    @GetMapping(value = "/getMedSell")
-    public String getMedSell() {
-        return "baseData/med_sell";
     }
 
 }

@@ -41,7 +41,7 @@
 		  }
 	  </script>
 	<script language="javaScript">
-		if(self != top){
+		if(self !== top){
 			alert("");
 			top.location = self.location;
 		}
@@ -53,7 +53,7 @@
       	<tr>
           <td colspan="2" align="left" valign="top">
          		<img src="${pageContext.request.contextPath}/static/images/login_zh.jpg" border="0" usemap="#Map">
-         		<form action = "${pageContext.request.contextPath}/userLogin" method="get">
+         		<form action = "${pageContext.request.contextPath}/userLogin" method="post">
 		    	<table border="0" class="tb1" style="margin-left: 80px">
 			      		 <tr>
 			          		<td colspan="2" align="center">

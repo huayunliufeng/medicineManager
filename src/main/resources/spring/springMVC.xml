@@ -25,7 +25,8 @@
             <mvc:mapping path="/cate/*"/>
             <mvc:mapping path="/med/*"/>
             <mvc:mapping path="/sell/*"/>
-            <mvc:mapping path="/user/"/>
+            <mvc:mapping path="/user/*"/>
+            <mvc:mapping path="/to*"/>
             <bean class="com.zhong.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>

@@ -16,8 +16,10 @@ public class Medicine {
     private String description;
     private Double price;
     private Integer medCount;
+    private Integer demand;
     private String photoPath;
     private Integer categoryId;
+    private String categoryName;
 
     public Medicine() {
     }
@@ -31,6 +33,22 @@ public class Medicine {
         this.medCount = medCount;
         this.photoPath = photoPath;
         this.categoryId = categoryId;
+    }
+
+    public Integer getDemand() {
+        return demand;
+    }
+
+    public void setDemand(Integer demand) {
+        this.demand = demand;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     @Override

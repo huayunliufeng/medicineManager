@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE>
 <html>
 
 	<head>
@@ -24,11 +24,11 @@
 			</tr>
 			<tr>
 				<td background="${pageContext.request.contextPath}/static/images/top_bg1.jpg" width="" height="40" class="wel">
-					xxxxxxxxxxx
+					${user.username}
 					，欢迎登录医药管理系统！
 				</td>
 				<td background="${pageContext.request.contextPath}/static/images/top_bg1.jpg" width="60" align="center">
-					<a href="login.html" target="_top" class="exit">
+					<a href="${pageContext.request.contextPath}/login" target="_top" class="exit">
 						退出系统
 					</a>
 				</td>

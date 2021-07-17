@@ -9,6 +9,9 @@
 另外注意代码格式，要求逻辑清晰，使用 ctrl+shift+L 快捷键可以整理代码。
 无需下载jq，统一使用在线的jq：
 <script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js"></script>
+使用到分页的地方还需要添加css样式表
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/images/bootstrap.min.css">
+
 input里的name要和po的相应属性名一致
 
 info.jsp为通用的显示信息页面，是否需要转发或者重定向请仔细考虑。

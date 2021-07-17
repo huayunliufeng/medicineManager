@@ -1,5 +1,6 @@
 package com.zhong.po;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -15,9 +16,11 @@ public class SellDetail {
     private String sellName;
     private double sellPrice;
     private int sellCount;
-    private Date sellTime;
+    private double total;
+    private String sellTime;
     private int medid;
     private int userid;
+    private String username;
 
     @Override
     public String toString() {
@@ -26,10 +29,28 @@ public class SellDetail {
                 ", sellName='" + sellName + '\'' +
                 ", sellPrice=" + sellPrice +
                 ", sellCount=" + sellCount +
-                ", sellTime=" + sellTime +
+                ", total=" + total +
+                ", sellTime=" + sellName +
                 ", medid=" + medid +
                 ", userid=" + userid +
+                ", username='" + username + '\'' +
                 '}';
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public int getId() {
@@ -64,11 +85,11 @@ public class SellDetail {
         this.sellCount = sellCount;
     }
 
-    public Date getSellTime() {
+    public String getSellTime() {
         return sellTime;
     }
 
-    public void setSellTime(Date sellTime) {
+    public void setSellTime(String sellTime) {
         this.sellTime = sellTime;
     }
 
