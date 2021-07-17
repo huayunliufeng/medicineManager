@@ -14,7 +14,7 @@ public class Category {
     private int id;
     private String name;
     private String description;
-    private Date createTime;
+    private String createTime;
 
     @Override
     public String toString() {
@@ -24,6 +24,10 @@ public class Category {
                 ", description='" + description + '\'' +
                 ", createTime=" + createTime +
                 '}';
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
     }
 
     public int getId() {
@@ -50,11 +54,7 @@ public class Category {
         this.description = description;
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
     }
 }

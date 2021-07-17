@@ -29,16 +29,10 @@
                         }else{
                             $("#medNoErrMsg").text("");
                         }
-
                     }
                 });
-
-
             });
-
         })
-
-
     </script>
 </head>
 <body>
@@ -57,8 +51,10 @@
                     <table border="0" align="center" width="450">
                         <tr>
                             <td align="right">药品编码：</td>
-                            <td align="left"><input type="text" name="medNo" maxlength="20"/>&nbsp;&nbsp;<span
-                                    id="medNoErrMsg"></span></td>
+                            <td align="left">
+                                <input type="text" name="medNo" maxlength="20"/>&nbsp;&nbsp;
+                                <span id="medNoErrMsg"></span>
+                            </td>
                         </tr>
                         <tr>
                             <td align="right">药品名称：</td>
@@ -80,8 +76,6 @@
                                     <c:forEach items="${categorys}" var="$category">
                                         <option value="${$category.id}">${$category.name}</option>
                                     </c:forEach>
-
-
                                 </select>
                             </td>
                         </tr>

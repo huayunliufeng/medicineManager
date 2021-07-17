@@ -1,6 +1,9 @@
 package com.zhong.mapper;
 
 import com.zhong.po.Medicine;
+import com.zhong.po.QueryVo;
+import com.zhong.utils.Page;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -52,11 +55,12 @@ public interface MedicineMapper {
 
     /**
      * 高级查询
-     *
      * @param medicine medicine
-     * @return List<Medicine>
+     * @return list
      */
+
     List<Medicine> findMedByMore(Medicine medicine);
+
 
     /**
      * 删除药品
@@ -64,5 +68,15 @@ public interface MedicineMapper {
      * @param id id
      */
     void deleteMedicineById(String id);
+
+    /**
+     *
+     * 库存的查询
+     * @param type int值（0,1,-1)
+     * @param medCount 输入的查询条件
+     * @return List
+     */
+
+    List<Medicine> findMedInventory(@Param("type") int type, @Param("medCount") int medCount);
 
 }

@@ -82,12 +82,12 @@
 				<table width="80%" align="center">
 					<tr>
 						<td height="22" onmouseover="this.style.backgroundColor='#ffffff'" onmouseout="this.style.backgroundColor=''">
-							<a href="${pageContext.request.contextPath}/jsp/baseData/category_add.html" target="main" class="sub1">添加类别</a>
+							<a href="${pageContext.request.contextPath}/jsp/baseData/category_add.jsp" target="main" class="sub1">添加类别</a>
 						</td>
 					</tr>
 					<tr>
 						<td height="22" onmouseover="this.style.backgroundColor='#ffffff'" onmouseout="this.style.backgroundColor=''">
-							<a href="${pageContext.request.contextPath}/jsp/baseData/category_list.html" target="main" class="sub1">查看类别</a>
+							<a href="${pageContext.request.contextPath}/cate/findCategory" target="main" class="sub1">查看类别</a>
 						</td>
 					</tr>					
 				</table>
@@ -150,7 +150,7 @@
 				<table width="80%" align="center">
 					<tr>
 						<td height="22" onmouseover="this.style.backgroundColor='#ffffff'" onmouseout="this.style.backgroundColor=''">
-							<a href="${pageContext.request.contextPath}/jsp/system/user_add.html" target="main" class="sub1">添加管理员</a>
+							<a href="${pageContext.request.contextPath}/jsp/system/user_add.jsp" target="main" class="sub1">添加管理员</a>
 						</td>
 					</tr>
 					<tr>

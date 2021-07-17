@@ -74,4 +74,16 @@ public class MedicineServiceImpl implements MedicineService {
     public void deleteMedicineById(String id) {
         medicineMapper.deleteMedicineById(id);
     }
+
+    public Page<Medicine> findMedInventory(QueryVo vo, int type,int medCount) {
+        //设置每页显示数量
+        PageHelper.startPage(vo.getPage(), vo.getRows());
+        //得到所有的记录数
+        List<Medicine> medicines = medicineMapper.findMedInventory(type,medCount);
+        //得到分页后的最终结果
+        PageInfo<Medicine> pageInfo = new PageInfo<Medicine>(medicines);
+
+        return new Page<Medicine>((int) pageInfo.getTotal(), pageInfo.getPageNum(), pageInfo.getPageSize(), pageInfo.getList());
+    }
+
 }

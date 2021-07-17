@@ -8,4 +8,35 @@
     <select id="findAllCategory" resultType="Category">
         select * from tb_category
     </select>
+
+    <insert id="addCategory" parameterType="Category">
+        insert into tb_category(name,description,createTime) values (#{name},#{description},now())
+    </insert>
+    <select id="getCategoryByName" parameterType="String" resultType="int">
+        select count(*) from tb_category where `name` =  #{name}
+    </select>
+
+
+
+    <select id="findCategory" resultType="Category">
+        select * from tb_category
+    </select>
+
+    <delete id="deleteCategoryById" parameterType="String">
+        delete
+        from tb_category
+        where id = #{id}
+    </delete>
+
+    <select id="findOneCategory" parameterType="String" resultType="com.zhong.po.Category">
+        select * from tb_category where id = #{id}
+    </select>
+
+    <update id="updateCategory" parameterType="Category">
+            UPDATE tb_category
+            SET name = #{name}, description = #{description} ,createTime = now()
+            where id = #{id}
+    </update>
+
+
 </mapper>

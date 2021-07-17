@@ -3,6 +3,7 @@ package com.zhong.service;
 import com.zhong.po.Medicine;
 import com.zhong.po.QueryVo;
 import com.zhong.utils.Page;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -69,5 +70,15 @@ public interface MedicineService {
      * @param id id
      */
     void deleteMedicineById(String id);
+
+    /**
+     * 库存的查询
+     * @param vo vo
+     * @param type int值（0,1,-1)
+     * @param medCount 输入的查询条件
+     * @return Page
+     */
+
+    Page<Medicine> findMedInventory(QueryVo vo,int type, int medCount);
 
 }
