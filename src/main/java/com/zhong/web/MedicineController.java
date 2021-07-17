@@ -1,7 +1,9 @@
 package com.zhong.web;
 
+import com.zhong.po.Category;
 import com.zhong.po.Medicine;
 import com.zhong.po.QueryVo;
+import com.zhong.service.CategoryService;
 import com.zhong.service.MedicineService;
 import com.zhong.utils.BeanUtil;
 import com.zhong.utils.Page;
@@ -20,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.regex.Pattern;
 
 /**
@@ -37,6 +40,8 @@ public class MedicineController {
 
     @Autowired
     private MedicineService medicineService;
+    @Autowired
+    private CategoryService categoryService;
 
     /**
      * 添加药品
@@ -159,6 +164,14 @@ public class MedicineController {
         mav.addObject("info", "删除成功！");
         mav.setViewName("info");
         return mav;
+    }
+
+    @PostMapping(value = "getSave")
+    public String getSave(String medNo,Model model){
+        List<Category> categorys = categoryService.findAllCategory();
+        model.addAttribute("categorys", categorys);
+        model.addAttribute("medNo", medNo);
+        return "require/req_save";
     }
 
     @GetMapping(value = "/drawImg")

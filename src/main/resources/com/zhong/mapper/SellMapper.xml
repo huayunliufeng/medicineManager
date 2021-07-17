@@ -28,4 +28,8 @@
         select s.id,s.sellName,s.sellPrice,s.sellCount,s.sellPrice*s.sellCount total,s.medid,s.sellTime,u.username from tb_selldetail s left join tb_user u on (s.userid=u.id)
         where date(s.sellTime) between #{param1} and #{param2}
     </select>
+
+    <delete id="deleteSellById" parameterType="String">
+        delete from tb_selldetail where id=#{id}
+    </delete>
 </mapper>

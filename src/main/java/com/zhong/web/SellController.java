@@ -67,12 +67,11 @@ public class SellController {
      *
      * @param vo        vo
      * @param model     model
-     * @param keyWord   keyWord
      * @param queryPage queryPage
      * @return String
      */
     @GetMapping(value = "/findSellList")
-    public String findSellList(QueryVo vo, Model model, String keyWord, String queryPage) {
+    public String findSellList(QueryVo vo, Model model, String queryPage) {
         Page<SellDetail> sellDetails = sellService.findSellDetails(vo, null);
         model.addAttribute("page", sellDetails);
         model.addAttribute("url", "findSellList");
@@ -110,12 +109,31 @@ public class SellController {
         return "baseData/med_view";
     }
 
+    /**
+     * 按时间查询订单
+     *
+     * @param vo vo
+     * @param begin begin
+     * @param end end
+     * @param model model
+     * @param queryPage queryPage
+     * @return String
+     */
     @GetMapping(value = "/findSellByData")
     public String findSellByData(QueryVo vo, String begin, String end, Model model, String queryPage) {
         Page<SellDetail> sellDetails = sellService.findSellByData(vo, begin, end);
         model.addAttribute("page", sellDetails);
         model.addAttribute("url", "findSellByData");
         return "sell/" + queryPage;
+    }
+
+    @GetMapping(value = "/delSell/{id}")
+    public ModelAndView deleteSellById(@PathVariable String id){
+        sellService.deleteSellById(id);
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("info", "删除成功！");
+        mav.setViewName("info");
+        return mav;
     }
 
 

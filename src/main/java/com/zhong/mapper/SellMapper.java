@@ -38,4 +38,11 @@ public interface SellMapper {
      * @return List<SellDetail>
      */
     List<SellDetail> findSellByData(String begin,String end);
+
+    /**
+     * 删除订单
+     *
+     * @param id id
+     */
+    void deleteSellById(String id);
 }

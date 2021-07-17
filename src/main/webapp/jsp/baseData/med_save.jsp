@@ -21,7 +21,7 @@
                     cache: false,  //是否缓存
                     success: function (data) { //回调函数，把data渲染到页面中
                         if(data === "YES"){
-                            $("#medNoErrMsg").text("该名称已存在！");
+                            $("#medNoErrMsg").text("该编号已存在！");
                             medNoSelect.focus();
                         }else if(data === "ERROR"){
                             $("#medNoErrMsg").text("编号格式错误：^[A-Za-z]\\w+！");

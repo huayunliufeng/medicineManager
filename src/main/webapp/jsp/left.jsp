@@ -108,10 +108,16 @@
 						<td height="22" onmouseover="this.style.backgroundColor='#ffffff'" onmouseout="this.style.backgroundColor=''">
 							<a href="${pageContext.request.contextPath}/med/findMed?resPage=baseData/med_sell" target="main" class="sub1">选购药品</a>
 						</td>
-					</tr>					
+					</tr>
+					<tr>
+						<td height="22" onmouseover="this.style.backgroundColor='#ffffff'" onmouseout="this.style.backgroundColor=''">
+							<a href="${pageContext.request.contextPath}/sell/findSellList?queryPage=sell_order" target="main" class="sub1">已购药品</a>
+						</td>
+					</tr>
 				</table>
 			</td>
 		</tr>
+
 		<!-- 销售管理 -->
     	<tr>
 			<td onClick="menu(3)" height="33" background="${pageContext.request.contextPath}/static/images/m1.jpg">
@@ -133,6 +139,37 @@
 							<a href="${pageContext.request.contextPath}/jsp/sell/sell_query.jsp" target="main" class="sub1">日期查询</a>
 						</td>
 					</tr>					
+				</table>
+			</td>
+		</tr>
+
+
+		<!-- 进货 -->
+		<tr>
+			<td onClick="menu(4)" height="33" background="${pageContext.request.contextPath}/static/images/m1.jpg">
+				<font class="m1">
+					进货管理
+				</font>
+			</td>
+		</tr>
+		<tr bgcolor="#E0FBC4">
+			<td id="sub_4" style="display: none">
+				<table width="80%" align="center">
+					<tr>
+						<td height="22" onmouseover="this.style.backgroundColor='#ffffff'" onmouseout="this.style.backgroundColor=''">
+							<a href="${pageContext.request.contextPath}/jsp/require/req_add.jsp" target="main" class="sub1">添加进货</a>
+						</td>
+					</tr>
+					<tr>
+						<td height="22" onmouseover="this.style.backgroundColor='#ffffff'" onmouseout="this.style.backgroundColor=''">
+							<a href="${pageContext.request.contextPath}/jsp/require/req_list.jsp" target="main" class="sub1">查看进货</a>
+						</td>
+					</tr>
+					<tr>
+						<td height="22" onmouseover="this.style.backgroundColor='#ffffff'" onmouseout="this.style.backgroundColor=''">
+							<a href="${pageContext.request.contextPath}/jsp/require/req_update.jsp" target="main" class="sub1">更新需求</a>
+						</td>
+					</tr>
 				</table>
 			</td>
 		</tr>

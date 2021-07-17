@@ -1,4 +1,6 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<!DOCTYPE>
 <html>
   <head>
     <title></title>	
@@ -9,45 +11,45 @@
 		<table width="100%" cellpadding="0" cellspacing="0" border="0"
 			align="center">
 			<tr>
-				<td class="td_title1">����ǰλ�ã�����/�������	&gt;&gt; ��������</td>
+				<td class="td_title1">·当前位置：进货/需求管理	&gt;&gt; 更新需求</td>
 			</tr>
 			<tr>
 
 				<td bgcolor="#FFFFFF" height="50">
 					<br>
-    <form action="req_list.html" method="post">
+    <form action="req_list.jsp" method="post">
     	<input type="hidden" name="command" value="add" />
       <table border="0" align="center" width="500">
         <tr>
-          <td align="right">ҩƷ���룺</td>
+          <td align="right">药品编码：</td>
           <td align="left"><input type="text" name="" disabled/></td>
         </tr>
         <tr>
-          <td align="right">ҩƷ���ƣ�</td>
+          <td align="right">药品名称：</td>
           <td align="left"><input type="text" name="" disabled/></td>
         </tr>
         <tr>
-          <td align="right">�۸�</td>
-          <td align="left"><input type="text" name="" disabled/>Ԫ</td>
+          <td align="right">价格：</td>
+          <td align="left"><input type="text" name="" disabled/>元</td>
         </tr>
         <tr>
-          <td align="right">��������:</td>
+          <td align="right">需求数量:</td>
           <td align="left"><input type="text" name=""/>
                 	<font color="red">
-          	          Ŀǰ������<input type="text" name="" disabled/>
+          	          目前数量：<input type="text" name="" disabled/>
           	</font>
           </td>
         </tr>
         <tr>
-          <td align="right">������ַ��</td>
+          <td align="right">出厂地址：</td>
           <td align="left"><input type="text" name="" disabled/></td>
         </tr>
         <tr>
-          <td align="right">������</td>
+          <td align="right">描述：</td>
           <td align="left"><input type="text" name="" disabled/></td>
         </tr>
         <tr>
-          <td colspan="2" align="center"><input type="submit" value="�ύ"/></td>
+          <td colspan="2" align="center"><input type="submit" value="提交"/></td>
         </tr>
       </table>
     </form>

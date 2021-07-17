@@ -40,4 +40,11 @@ public interface SellService {
      */
     Page<SellDetail> findSellByData(QueryVo vo,String begin,String end);
 
+    /**
+     * 删除订单
+     *
+     * @param id id
+     */
+    void deleteSellById(String id);
+
 }

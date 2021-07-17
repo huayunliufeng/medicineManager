@@ -45,4 +45,9 @@ public class SellServiceImpl implements SellService {
         PageInfo<SellDetail> pageInfo = new PageInfo<SellDetail>(sellDetails);
         return new Page<SellDetail>((int) pageInfo.getTotal(), pageInfo.getPageNum(), pageInfo.getPageSize(), pageInfo.getList());
     }
+
+    @Override
+    public void deleteSellById(String id) {
+        sellMapper.deleteSellById(id);
+    }
 }
