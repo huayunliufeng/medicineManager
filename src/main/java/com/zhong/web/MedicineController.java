@@ -167,7 +167,7 @@ public class MedicineController {
     }
 
     @PostMapping(value = "getSave")
-    public String getSave(String medNo,Model model){
+    public String getSave(String medNo, Model model) {
         List<Category> categorys = categoryService.findAllCategory();
         model.addAttribute("categorys", categorys);
         model.addAttribute("medNo", medNo);
@@ -190,5 +190,14 @@ public class MedicineController {
         os.close();
         fis.close();
     }
+
+    @GetMapping(value = "findInventory")
+    public String findInventory(QueryVo vo, int type, int medCount, Model model, String queryPage) {
+        Page<Medicine> medicines = medicineService.findMedInventory(vo, type, medCount);
+        model.addAttribute("page", medicines);
+        model.addAttribute("url", "findInventory");
+        return "baseData/" + queryPage;
+    }
+
 
 }
