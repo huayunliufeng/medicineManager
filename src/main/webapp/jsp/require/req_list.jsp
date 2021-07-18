@@ -1,11 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
+<%@ taglib prefix="pg" uri="http://wanggang.cn/common/" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE>
 <html>
 <head>
     <title></title>
-    <link rel="stylesheet" type="text/css" href="../images/styles.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/images/styles.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/images/bootstrap.min.css">
+    <script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        let delMed = (id)=>{
+            if(confirm("确认删除吗？")){
+                location.href = "${pageContext.request.contextPath}/req/delReq/"+id;
+            }
+        };
+    </script>
 </head>
 <body>
 <div class="div1">
@@ -24,8 +34,9 @@
                             <table border="0" width="100%">
                                 <tr>
                                     <td align="left">
-                                        <form action="req_list.jsp" method="post" class="blur_form">
-                                            模糊查询：<input name="keyWord" type="text" size="20"/>
+                                        <form action="${pageContext.request.contextPath}/req/reqFuQue" method="Get" class="blur_form">
+                                            <input type="hidden" name="queryPage" value="req_list"/>
+                                            模糊查询：<input name="keyWord" type="text" placeholder="按名称或出厂地址" size="20"/>
                                             <input type="submit" value="查询"/>
                                         </form>
                                     </td>
@@ -38,20 +49,33 @@
                         <td class="tb_tl">药品编码</td>
                         <td class="tb_tl">药品名称</td>
                         <td class="tb_tl">价格</td>
-                        <td class="tb_tl">数量</td>
                         <td class="tb_tl">库存数量</td>
                         <td class="tb_tl">出厂地址</td>
                         <td class="tb_tl">操作</td>
                     </tr>
+                    <c:forEach items="${page.rows}" var="requires">
+                        <tr bgcolor="#FFFFFF">
+                            <td>${requires.id}</td>
+                            <td>${requires.medNo}</td>
+                            <td>${requires.medName}</td>
+                            <td>${requires.medPrice}元</td>
+                            <td>${requires.reqCount}</td>
+                            <td>${requires.factoryAdd}</td>
+                            <td><a href="${pageContext.request.contextPath}/req/findOneReq/${requires.id}/?resPage=require/req_update_list">修改</a>&nbsp;
+                                <a href="javascript:delMed('${requires.id}')">删除</a></td>
+                        </tr>
+                    </c:forEach>
                     <tr bgcolor="#FFFFFF">
-                        <td>1</td>
-                        <td>0002</td>
-                        <td>牛黄解毒丸</td>
-                        <td>50元</td>
-                        <td>10</td>
-                        <td>20</td>
-                        <td>北京同仁堂</td>
-                        <td><a href="req_update.jsp">修改</a>&nbsp;<a href="req_list.jsp">删除</a></td>
+                        <table border="0" width="100%">
+                            <tr>
+                                <td align="right">
+                                    <div class="col-md-12 text-right">
+                                        <pg:page url="${url}"/>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        </td>
                     </tr>
                 </table>
                 <br>

@@ -53,12 +53,12 @@ public interface MedicineMapper {
      */
     void updateMedicine(Medicine medicine);
 
+
     /**
      * 高级查询
      * @param medicine medicine
      * @return list
      */
-
     List<Medicine> findMedByMore(Medicine medicine);
 
 
@@ -76,7 +76,6 @@ public interface MedicineMapper {
      * @param medCount 输入的查询条件
      * @return List
      */
-
     List<Medicine> findMedInventory(@Param("type") int type, @Param("medCount") int medCount);
 
 }

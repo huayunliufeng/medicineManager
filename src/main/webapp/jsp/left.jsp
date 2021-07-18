@@ -162,12 +162,12 @@
 					</tr>
 					<tr>
 						<td height="22" onmouseover="this.style.backgroundColor='#ffffff'" onmouseout="this.style.backgroundColor=''">
-							<a href="${pageContext.request.contextPath}/jsp/require/req_list.jsp" target="main" class="sub1">查看进货</a>
+							<a href="${pageContext.request.contextPath}/req/findAllReq" target="main" class="sub1">查看进货</a>
 						</td>
 					</tr>
 					<tr>
 						<td height="22" onmouseover="this.style.backgroundColor='#ffffff'" onmouseout="this.style.backgroundColor=''">
-							<a href="${pageContext.request.contextPath}/jsp/require/req_update.jsp" target="main" class="sub1">更新需求</a>
+							<a href="${pageContext.request.contextPath}/toRequireCate" target="main" class="sub1">添加需求</a>
 						</td>
 					</tr>
 				</table>

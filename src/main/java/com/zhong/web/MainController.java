@@ -98,4 +98,17 @@ public class MainController {
         return "baseData/med_save";
     }
 
+
+    @GetMapping(value = "/toRequireCate")
+    public  String getCategoryForReq(Model model){
+        List<Category> categorys;
+        try {
+            categorys = categoryService.findAllCategory();
+        } catch (Exception e) {
+            throw new SelectException("查询分类信息失败！");
+        }
+        model.addAttribute("categorys", categorys);
+        return "require/req_save";
+    }
+
 }

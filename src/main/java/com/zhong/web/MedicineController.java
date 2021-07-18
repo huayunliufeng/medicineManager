@@ -135,7 +135,7 @@ public class MedicineController {
         } catch (Exception e) {
             throw new SelectException("查询该药品信息失败！");
         }
-        model.addAttribute("medicine", medicine);
+        model.addAttribute("medicine",medicine);
         return resPage;
     }
 
@@ -184,7 +184,7 @@ public class MedicineController {
 
 
     /**
-     * 模糊查询
+     * 高级查询
      *
      * @param model     model
      * @param vo        vo
@@ -204,7 +204,7 @@ public class MedicineController {
         try {
             medicineList = medicineService.findMedByMore(vo, medicine);
         } catch (Exception e) {
-            throw new SelectException("模糊查询失败！");
+            throw new SelectException("高级查询失败！");
         }
         model.addAttribute("page", medicineList);
         model.addAttribute("url", "findByMore");

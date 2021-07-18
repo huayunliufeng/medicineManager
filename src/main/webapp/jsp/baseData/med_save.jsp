@@ -46,8 +46,7 @@
         <tr>
             <td bgcolor="#FFFFFF" height="50">
                 <br>
-                <form action="${pageContext.request.contextPath}/med/addMed" method="post"
-                      enctype="multipart/form-data">
+                <form action="${pageContext.request.contextPath}/med/addMed" method="post" enctype="multipart/form-data">
                     <table border="0" align="center" width="450">
                         <tr>
                             <td align="right">药品编码：</td>

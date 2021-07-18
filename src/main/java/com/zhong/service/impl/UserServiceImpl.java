@@ -21,18 +21,22 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
+    @Override
     public void addAdminUser(AdminUser user) {
-
+            userMapper.addAdminUser(user);
     }
 
+    @Override
     public void deleteAdminUserById(String id) {
 
     }
 
+    @Override
     public void updateAdminUserPassword(String id, String newPass) {
 
     }
 
+    @Override
     public List<AdminUser> findAllAdminUser() {
         return null;
     }
