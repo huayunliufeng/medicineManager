@@ -3,10 +3,7 @@ package com.zhong.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zhong.mapper.RequireMapper;
-import com.zhong.po.Category;
-import com.zhong.po.Medicine;
-import com.zhong.po.QueryVo;
-import com.zhong.po.Require;
+import com.zhong.po.*;
 import com.zhong.service.RequireService;
 import com.zhong.utils.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,12 +27,24 @@ public class RequireServiceImpl implements RequireService {
 
     @Override
     public void addRequire(Require require) {
-        requireMapper.addRequire(require);
+
+        try {
+            requireMapper.addRequire(require);
+        } catch (Exception e) {
+            throw new InsertException("添加需求失败！");
+        }
     }
 
     @Override
     public int getRequireByMedNo(String medNo) {
-        return requireMapper.getRequireByMedNo(medNo);
+        int count;
+        try {
+            count = requireMapper.getRequireByMedNo(medNo);
+            return count;
+        } catch (Exception e) {
+            throw new SelectException("查询编号为 " + medNo + " 的药品失败！");
+        }
+
     }
 
     @Override
@@ -43,7 +52,12 @@ public class RequireServiceImpl implements RequireService {
         //设置每页显示数量
         PageHelper.startPage(vo.getPage(), vo.getRows());
         //得到所有的记录数
-        List<Require> require = requireMapper.findAllRequire();
+        List<Require> require;
+        try {
+            require = requireMapper.findAllRequire();
+        } catch (Exception e) {
+            throw new SelectException("查询所有需求失败！");
+        }
         //得到分页后的最终结果
         PageInfo<Require> pageInfo = new PageInfo<Require>(require);
 
@@ -59,7 +73,12 @@ public class RequireServiceImpl implements RequireService {
         //设置每页显示数量
         PageHelper.startPage(vo.getPage(), vo.getRows());
         //得到所有的记录数
-        List<Require> require = requireMapper.findRequire(keyWord);
+        List<Require> require;
+        try {
+            require = requireMapper.findRequire(keyWord);
+        } catch (Exception e) {
+            throw new SelectException("查询keyWord为 " + keyWord + " 的需求失败！");
+        }
         //得到分页后的最终结果
         PageInfo<Require> pageInfo = new PageInfo<Require>(require);
 
@@ -68,28 +87,55 @@ public class RequireServiceImpl implements RequireService {
 
     @Override
     public void deleteRequireById(String id) {
-        requireMapper.deleteRequireById(id);
+        try {
+            requireMapper.deleteRequireById(id);
+        } catch (Exception e) {
+            throw new DeleteException("删除id为 " + id + " 的需求失败！");
+        }
+
     }
 
     @Override
     public Require findOneReqById(String id) {
-        return requireMapper.findOneReqById(id);
+        Require require;
+        try {
+            require = requireMapper.findOneReqById(id);
+            return require;
+        } catch (Exception e) {
+            throw new SelectException("查询id为 " + id + " 的需求失败！");
+        }
+
     }
 
     @Override
     public void updateReq(Require require) {
-        requireMapper.updateReq(require);
+        try {
+            requireMapper.updateReq(require);
+        } catch (Exception e) {
+            throw new UpdateException("更新需求失败！");
+        }
+
     }
 
     @Override
     public Require findOneReqByMedNo(String medNo) {
-        return requireMapper.findOneReqByMedNo(medNo);
+        Require require;
+        try {
+            require = requireMapper.findOneReqByMedNo(medNo);
+            return require;
+        } catch (Exception e) {
+            throw new SelectException("查询medNo为 " + medNo + " 的需求失败！");
+        }
+
     }
 
     @Override
     public void updateReqCount(String medNo, int reqCount) {
-        requireMapper.updateReqCount(medNo,reqCount);
+        try {
+            requireMapper.updateReqCount(medNo, reqCount);
+        } catch (Exception e) {
+            throw new UpdateException("更新需求失败！");
+        }
     }
-
 
 }

@@ -58,11 +58,11 @@
         </tr>
         <tr>
           <td align="right">价格：</td>
-          <td align="left"><input type="text" name="medPrice" />	元</td>
+          <td align="left"><input type="number" min="0" step="0.1" name="medPrice" />	元</td>
         </tr>
         <tr>
           <td align="right">数量 ：</td>
-          <td align="left"><input type="text" name="reqCount"/></td>
+          <td align="left"><input type="number" min="1" name="reqCount"/></td>
         </tr>
         <tr>
           <td align="right">所属类别：</td>

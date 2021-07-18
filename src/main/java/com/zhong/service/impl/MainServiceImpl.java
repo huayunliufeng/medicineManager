@@ -2,6 +2,7 @@ package com.zhong.service.impl;
 
 import com.zhong.mapper.MainMapper;
 import com.zhong.po.AdminUser;
+import com.zhong.po.SelectException;
 import com.zhong.service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,13 @@ public class MainServiceImpl implements MainService {
 
     @Override
     public AdminUser userLogin(String username, String password) {
-        return mainMapper.userLogin(username,password);
+        AdminUser adminUser;
+        try {
+            adminUser = mainMapper.userLogin(username,password);
+            return adminUser;
+        }catch (Exception e){
+            throw new SelectException("登录失败！");
+        }
+
     }
 }

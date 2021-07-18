@@ -14,9 +14,9 @@ public interface MainService {
 
     /**
      * 用户登入
-     * @param username
-     * @param password
-     * @return
+     * @param username username
+     * @param password password
+     * @return AdminUser
      */
     AdminUser userLogin ( String username, String password);
 }

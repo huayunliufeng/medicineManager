@@ -1,6 +1,9 @@
 package com.zhong.web;
 
-import com.zhong.po.*;
+import com.zhong.po.AdminUser;
+import com.zhong.po.Medicine;
+import com.zhong.po.QueryVo;
+import com.zhong.po.SellDetail;
 import com.zhong.service.SellService;
 import com.zhong.utils.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,16 +48,9 @@ public class SellController {
 
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         AdminUser user = (AdminUser) request.getServletContext().getAttribute("user");
-
         sellDetail.setUserid(user.getId());
         sellDetail.setSellTime(new SimpleDateFormat("yy-MM-dd HH-mm-ss").format(Calendar.getInstance().getTime()));
-
-        try {
-            sellService.addSellDetail(sellDetail);
-        } catch (Exception e) {
-            throw new InsertException("添加订单失败！");
-        }
-
+        sellService.addSellDetail(sellDetail);
         ModelAndView mav = new ModelAndView();
         mav.addObject("info", "购买成功！");
         mav.setViewName("info");
@@ -72,11 +68,7 @@ public class SellController {
     @GetMapping(value = "/findSellList")
     public String findSellList(QueryVo vo, Model model, String queryPage) {
         Page<SellDetail> sellDetails;
-        try {
-            sellDetails = sellService.findSellDetails(vo, null);
-        } catch (Exception e) {
-            throw new SelectException("查询所有订单失败！");
-        }
+        sellDetails = sellService.findSellDetails(vo, null);
         model.addAttribute("page", sellDetails);
         model.addAttribute("url", "findSellList");
         return "sell/" + queryPage;
@@ -94,11 +86,7 @@ public class SellController {
     @GetMapping(value = "/fuQue")
     public String fuzzyQuery(Model model, String keyWord, QueryVo vo, String queryPage) {
         Page<SellDetail> sellDetails;
-        try {
-            sellDetails = sellService.findSellDetails(vo, keyWord.trim());
-        } catch (Exception e) {
-            throw new SelectException("关键词为" + keyWord + " 的模糊查询失败！");
-        }
+        sellDetails = sellService.findSellDetails(vo, keyWord.trim());
         model.addAttribute("page", sellDetails);
         model.addAttribute("url", "fuQue");
         return "sell/" + queryPage;
@@ -114,11 +102,7 @@ public class SellController {
     @GetMapping(value = "/findMedDet/{id}")
     public String findMedDetail(Model model, @PathVariable String id) {
         Medicine medicine;
-        try {
-            medicine = sellService.findOneMedicineById(id);
-        } catch (Exception e) {
-            throw new SelectException("查询药品订单详细信息失败！");
-        }
+        medicine = sellService.findOneMedicineById(id);
         model.addAttribute("medicine", medicine);
         return "baseData/med_view";
     }
@@ -136,11 +120,7 @@ public class SellController {
     @GetMapping(value = "/findSellByData")
     public String findSellByData(QueryVo vo, String begin, String end, Model model, String queryPage) {
         Page<SellDetail> sellDetails;
-        try {
-            sellDetails = sellService.findSellByData(vo, begin, end);
-        } catch (Exception e) {
-            throw new SelectException("时间段 " + begin + " " + end + " 的查询失败！");
-        }
+        sellDetails = sellService.findSellByData(vo, begin, end);
         model.addAttribute("page", sellDetails);
         model.addAttribute("url", "findSellByData");
         return "sell/" + queryPage;
@@ -154,12 +134,7 @@ public class SellController {
      */
     @GetMapping(value = "/delSell/{id}")
     public ModelAndView deleteSellById(@PathVariable String id) {
-        try {
-            sellService.deleteSellById(id);
-        } catch (Exception e) {
-            throw new DeleteException("id为 " + id + " 的订单删除失败！");
-        }
-
+        sellService.deleteSellById(id);
         ModelAndView mav = new ModelAndView();
         mav.addObject("info", "删除成功！");
         mav.setViewName("info");

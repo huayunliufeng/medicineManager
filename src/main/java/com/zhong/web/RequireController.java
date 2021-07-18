@@ -1,6 +1,9 @@
 package com.zhong.web;
 
-import com.zhong.po.*;
+import com.zhong.po.Category;
+import com.zhong.po.QueryVo;
+import com.zhong.po.Require;
+import com.zhong.po.SelectException;
 import com.zhong.service.CategoryService;
 import com.zhong.service.MedicineService;
 import com.zhong.service.RequireService;
@@ -42,10 +45,10 @@ public class RequireController {
 
     /**
      * 添加新的需求
+     *
      * @param request request
      * @return ModelAndView
      */
-
     @PostMapping(value = "/addReq")
     public ModelAndView addRequire(HttpServletRequest request) {
 
@@ -59,16 +62,9 @@ public class RequireController {
         } catch (IOException e) {
             throw new SelectException(path + "/" + filename + "文件没找到！");
         }
-
         Require require = BeanUtil.toBean(request.getParameterMap(), Require.class);
         require.setPhotoPath(filename);
-
-        try {
-            requireService.addRequire(require);
-        } catch (Exception e) {
-            throw new InsertException("添加需求失败！");
-        }
-
+        requireService.addRequire(require);
         ModelAndView mav = new ModelAndView();
         mav.addObject("info", "添加成功！");
         mav.setViewName("info");
@@ -78,54 +74,56 @@ public class RequireController {
 
     /**
      * 判断需求是否重复
+     *
      * @param medNo medNo
      * @return String
      */
     @GetMapping(value = "/requireCheckMedNo", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
-    public String requireCheckMedNo(String medNo,Model model) {
+    public String requireCheckMedNo(String medNo, Model model) {
         //检查格式：字母加数字
         String pattern = "^[A-Za-z]\\w+";
         boolean isMatch = Pattern.matches(pattern, medNo);
         if (!isMatch) {
             return "ERROR";
         }
-
         //这个应该在药品表里查
-
         int count = medicineService.getMedicineByMedNo(medNo);
 
         if (count == 0) {
             return "NO";
-        }else {
+        } else {
             return "YES";
         }
 
     }
 
+    /**
+     * 获取基础数据
+     *
+     * @param medNo medNo
+     * @param model model
+     * @param vo    vo
+     * @return String
+     */
     @GetMapping(value = "iflu")
-    public String fuck(String medNo,Model model,QueryVo vo){
+    public String fuck(String medNo, Model model, QueryVo vo) {
         List<Category> category = categoryService.findAllCategory();
-        model.addAttribute("medNo",medNo);
-        model.addAttribute("categorys",category);
+        model.addAttribute("medNo", medNo);
+        model.addAttribute("categorys", category);
         return "require/req_save";
     }
 
     /**
      * 修改数量
-     * @param medNo medNo
+     *
+     * @param medNo    medNo
      * @param reqCount reqCount
      * @return ModelAndView
      */
     @PostMapping(value = "/updateReqCount")
-    public ModelAndView updateReqCount(String medNo , int reqCount){
-
-        try {
-            requireService.updateReqCount(medNo,reqCount);
-        } catch (Exception e) {
-            throw new UpdateException("更新异常");
-        }
-
+    public ModelAndView updateReqCount(String medNo, int reqCount) {
+        requireService.updateReqCount(medNo, reqCount);
         ModelAndView mav = new ModelAndView();
         mav.addObject("info", "更新成功！");
         mav.setViewName("info");
@@ -135,19 +133,15 @@ public class RequireController {
 
     /**
      * 查询所有的需求
+     *
      * @param model model
-     * @param vo vo
-     * @return  String
+     * @param vo    vo
+     * @return String
      */
     @GetMapping(value = "/findAllReq")
-    public String findAllRequire(Model model, QueryVo vo){
+    public String findAllRequire(Model model, QueryVo vo) {
         Page<Require> requires;
-        try {
-            requires = requireService.findAllRequire(vo);
-        } catch (Exception e) {
-            throw new SelectException("查询分类失败！");
-        }
-
+        requires = requireService.findAllRequire(vo);
         model.addAttribute("page", requires);
         model.addAttribute("url", "findCategory");
         return "require/req_list";
@@ -155,22 +149,19 @@ public class RequireController {
 
     /**
      * 模糊查询
-     * @param model model
-     * @param keyWord keyWord
-     * @param vo vo
+     *
+     * @param model     model
+     * @param keyWord   keyWord
+     * @param vo        vo
      * @param queryPage queryPage
      * @return String
      */
 
     @GetMapping(value = "reqFuQue")
-    public String requireFuzzyQuery(Model model, String keyWord, QueryVo vo, String queryPage){
+    public String requireFuzzyQuery(Model model, String keyWord, QueryVo vo, String queryPage) {
 
         Page<Require> requires;
-        try {
-           requires = requireService.findRequire(vo, keyWord.trim());
-        } catch (Exception e) {
-            throw new SelectException("关键词为：" + keyWord + " 的查询失败！");
-        }
+        requires = requireService.findRequire(vo, keyWord.trim());
         model.addAttribute("page", requires);
         model.addAttribute("url", "reqFuQue");
         return "require/" + queryPage;
@@ -178,18 +169,13 @@ public class RequireController {
 
     /**
      * 删除对应的需求数据
+     *
      * @param id id
      * @return ModelAndView
      */
     @GetMapping(value = "/delReq/{id}")
-    public ModelAndView deleteRequireById(@PathVariable String id){
-
-        try {
-            requireService.deleteRequireById(id);
-        } catch (Exception e) {
-            throw new DeleteException("id为" + id + "的需求删除失败！");
-        }
-
+    public ModelAndView deleteRequireById(@PathVariable String id) {
+        requireService.deleteRequireById(id);
         ModelAndView mav = new ModelAndView();
         mav.addObject("info", "删除成功！");
         mav.setViewName("info");
@@ -198,6 +184,7 @@ public class RequireController {
 
     /**
      * 查询药品详情
+     *
      * @param id      id
      * @param model   model
      * @param resPage resPage
@@ -205,13 +192,9 @@ public class RequireController {
      */
     @GetMapping(value = "/findOneReq/{id}")
     public String findOneReqById(@PathVariable String id, Model model, String resPage) {
-        Require  requires;
-        try {
-           requires = requireService.findOneReqById(id);
-        } catch (Exception e) {
-            throw new SelectException("查询该需求信息失败！");
-        }
-        model.addAttribute("requires",requires);
+        Require requires;
+        requires = requireService.findOneReqById(id);
+        model.addAttribute("requires", requires);
         return resPage;
     }
 
@@ -224,13 +207,7 @@ public class RequireController {
      */
     @PostMapping(value = "/updateReq")
     public ModelAndView updateRequire(Require require) {
-
-        try {
-           requireService.updateReq(require);
-        } catch (Exception e) {
-            throw new UpdateException("更新异常");
-        }
-
+        requireService.updateReq(require);
         ModelAndView mav = new ModelAndView();
         mav.addObject("info", "更新成功！");
         mav.setViewName("info");
@@ -238,20 +215,21 @@ public class RequireController {
 
     }
 
+    /**
+     * 查询需求
+     *
+     * @param medNo   medNo
+     * @param model   model
+     * @param resPage resPage
+     * @return String
+     */
     @PostMapping(value = "/findReqByMedNo")
-    public String findReqByMedNo (String medNo, Model model, String resPage){
-
+    public String findReqByMedNo(String medNo, Model model, String resPage) {
         Require require;
-
-        try {
-            require = requireService.findOneReqByMedNo(medNo);
-        } catch (Exception e) {
-            throw new SelectException("查询该需求信息失败！");
-        }
-        model.addAttribute("requires",require);
-        return "require/"+ resPage;
+        require = requireService.findOneReqByMedNo(medNo);
+        model.addAttribute("requires", require);
+        return "require/" + resPage;
     }
-
 
 
 }

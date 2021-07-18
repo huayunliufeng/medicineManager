@@ -1,7 +1,5 @@
 package com.zhong.service;
 
-import com.zhong.po.Category;
-import com.zhong.po.Medicine;
 import com.zhong.po.QueryVo;
 import com.zhong.po.Require;
 import com.zhong.utils.Page;

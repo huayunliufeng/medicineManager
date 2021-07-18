@@ -1,6 +1,7 @@
 package com.zhong.web;
 
-import com.zhong.po.*;
+import com.zhong.po.Category;
+import com.zhong.po.QueryVo;
 import com.zhong.service.CategoryService;
 import com.zhong.utils.BeanUtil;
 import com.zhong.utils.Page;
@@ -42,13 +43,7 @@ public class CategoryController {
         String time = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss").format(Calendar.getInstance().getTime());
         Category category = BeanUtil.toBean(request.getParameterMap(), Category.class);
         category.setCreateTime(time);
-
-        try {
-            categoryService.addCategory(category);
-        } catch (Exception e) {
-            throw new InsertException("新增分类失败！");
-        }
-
+        categoryService.addCategory(category);
         ModelAndView mav = new ModelAndView();
         mav.addObject("info", "添加成功！");
         mav.setViewName("info");
@@ -87,11 +82,7 @@ public class CategoryController {
     @GetMapping(value = "/findCategory")
     public String findCategory(Model model, QueryVo vo) {
         Page<Category> categorys;
-        try {
-            categorys = categoryService.findCategory(vo);
-        } catch (Exception e) {
-            throw new SelectException("查询分类失败！");
-        }
+        categorys = categoryService.findCategory(vo);
 
         model.addAttribute("page", categorys);
         model.addAttribute("url", "findCategory");
@@ -106,13 +97,7 @@ public class CategoryController {
      */
     @GetMapping(value = "/deleteCategory/{id}")
     public ModelAndView deleteCategoryById(@PathVariable String id) {
-
-        try {
-            categoryService.deleteCategoryById(id);
-        } catch (Exception e) {
-            throw new DeleteException("删除分类失败！请检查是否含有该分类的药品！");
-        }
-
+        categoryService.deleteCategoryById(id);
         ModelAndView mav = new ModelAndView();
         mav.addObject("info", "删除成功！");
         mav.setViewName("info");
@@ -131,12 +116,7 @@ public class CategoryController {
     @GetMapping(value = "/findOneCategory/{id}")
     public String findOneMed(@PathVariable String id, Model model, String resPage) {
         Category category;
-        try {
-            category = categoryService.findOneCategory(id);
-        } catch (Exception e) {
-            throw new SelectException("查询id为" + id + "的分类失败！");
-        }
-
+        category = categoryService.findOneCategory(id);
         model.addAttribute("category", category);
         return resPage;
     }
@@ -149,11 +129,7 @@ public class CategoryController {
      */
     @PostMapping(value = "/updateCategory")
     public ModelAndView updateCategory(Category category) {
-        try {
-            categoryService.updateCategory(category);
-        } catch (Exception e) {
-            throw new UpdateException("更新药品类别失败！");
-        }
+        categoryService.updateCategory(category);
         ModelAndView mav = new ModelAndView();
         mav.addObject("info", "更新成功！");
         mav.setViewName("info");

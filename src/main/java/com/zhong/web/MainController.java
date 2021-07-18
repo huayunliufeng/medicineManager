@@ -2,9 +2,9 @@ package com.zhong.web;
 
 import com.zhong.po.AdminUser;
 import com.zhong.po.Category;
-import com.zhong.po.SelectException;
 import com.zhong.service.CategoryService;
 import com.zhong.service.MainService;
+import com.zhong.utils.Tools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,35 +49,17 @@ public class MainController {
      * @return 进入or重新输入
      */
     @PostMapping(value = "/userLogin")
-    public String userLoginFilter(String username, String password) {
+    public String userLoginFilter(String username, String password,Model model) {
+        password = Tools.md5(password);
         AdminUser user = mainService.userLogin(username, password);
         if (user != null) {
             HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
             request.getServletContext().setAttribute("user", user);
             return "manager";
         } else {
+            model.addAttribute("err", "密码错误！");
             return "login";
         }
-    }
-
-    /**
-     * 得到top
-     *
-     * @return String
-     */
-    @GetMapping(value = "/toTop")
-    public String getTop() {
-        return "top";
-    }
-
-    /**
-     * 得到left
-     *
-     * @return String
-     */
-    @GetMapping(value = "/toLeft")
-    public String getLeft() {
-        return "left";
     }
 
     /**
@@ -89,24 +71,21 @@ public class MainController {
     @GetMapping(value = "/toCate")
     public String getCategory(Model model) {
         List<Category> categorys;
-        try {
-            categorys = categoryService.findAllCategory();
-        } catch (Exception e) {
-            throw new SelectException("查询分类信息失败！");
-        }
+        categorys = categoryService.findAllCategory();
         model.addAttribute("categorys", categorys);
         return "baseData/med_save";
     }
 
-
+    /**
+     * 查询分类
+     *
+     * @param model model
+     * @return String
+     */
     @GetMapping(value = "/toRequireCate")
-    public  String getCategoryForReq(Model model){
+    public String getCategoryForReq(Model model) {
         List<Category> categorys;
-        try {
-            categorys = categoryService.findAllCategory();
-        } catch (Exception e) {
-            throw new SelectException("查询分类信息失败！");
-        }
+        categorys = categoryService.findAllCategory();
         model.addAttribute("categorys", categorys);
         return "require/req_save";
     }

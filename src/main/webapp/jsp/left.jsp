@@ -192,12 +192,12 @@
 					</tr>
 					<tr>
 						<td height="22" onmouseover="this.style.backgroundColor='#ffffff'" onmouseout="this.style.backgroundColor=''">
-							<a href="${pageContext.request.contextPath}/jsp/system/user_list.html" target="main" class="sub1">查看所有管理员</a>
+							<a href="${pageContext.request.contextPath}/user/findUser" target="main" class="sub1">查看所有管理员</a>
 						</td>
 					</tr>
 					<tr>
 						<td height="22" onmouseover="this.style.backgroundColor='#ffffff'" onmouseout="this.style.backgroundColor=''">
-							<a href="${pageContext.request.contextPath}/jsp/system/user_password.html" target="main" class="sub1">修改密码</a>
+							<a href="${pageContext.request.contextPath}/jsp/system/user_password.jsp" target="main" class="sub1">修改密码</a>
 						</td>
 					</tr>					
 					<tr>

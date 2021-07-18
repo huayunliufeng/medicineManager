@@ -1,6 +1,7 @@
 package com.zhong.mapper;
 
 import com.zhong.po.AdminUser;
+import com.zhong.po.QueryVo;
 
 import java.util.List;
 
@@ -14,6 +15,21 @@ import java.util.List;
 public interface UserMapper {
 
 
+    /**
+     * 查询管理员是否存在
+     *
+     * @param username username
+     * @return int
+     */
+    Integer getAdminUser(String username);
+
+    /**
+     * 查询密码
+     *
+     * @param id id
+     * @return String
+     */
+    String getPassword(String id);
 
     /**
      * 添加管理员

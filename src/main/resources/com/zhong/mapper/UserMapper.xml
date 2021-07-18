@@ -4,4 +4,25 @@
 
 <!--namespace是命名空间，本文件中所命名的语句只在本空间中有效，可以解决映射文件中同名语句的冲突，可以与接口的全限定名做关联，从而实现mapper代理的功能-->
 
-<mapper namespace="com.zhong.mapper.UserMapper"></mapper>
+<mapper namespace="com.zhong.mapper.UserMapper">
+    <select id="getAdminUser" parameterType="String" resultType="Integer">
+        select count(*) from tb_user where username=#{username};
+    </select>
+
+    <select id="getPassword" parameterType="String" resultType="String">
+        select password from tb_user where id=#{id}
+    </select>
+
+    <insert id="addAdminUser" parameterType="AdminUser">
+        insert into tb_user(username, password, createTime) values(#{username},#{password},#{createTime})
+    </insert>
+
+    <select id="findAllAdminUser" resultType="AdminUser">
+        select * from tb_user
+    </select>
+
+    <delete id="deleteAdminUserById" parameterType="String">
+        delete from tb_user where id=#{id}
+    </delete>
+
+</mapper>

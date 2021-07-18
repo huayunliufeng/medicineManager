@@ -1,6 +1,9 @@
 package com.zhong.web;
 
-import com.zhong.po.*;
+import com.zhong.po.Category;
+import com.zhong.po.Medicine;
+import com.zhong.po.QueryVo;
+import com.zhong.po.SelectException;
 import com.zhong.service.CategoryService;
 import com.zhong.service.MedicineService;
 import com.zhong.utils.BeanUtil;
@@ -63,11 +66,7 @@ public class MedicineController {
         Medicine medicine = BeanUtil.toBean(request.getParameterMap(), Medicine.class);
         medicine.setPhotoPath(filename);
 
-        try {
-            medicineService.addMedicine(medicine);
-        } catch (Exception e) {
-            throw new InsertException("添加药品失败！");
-        }
+        medicineService.addMedicine(medicine);
 
         ModelAndView mav = new ModelAndView();
         mav.addObject("info", "添加成功！");
@@ -86,11 +85,7 @@ public class MedicineController {
     @GetMapping(value = "/findMed")
     public String findMedicine(Model model, QueryVo vo, String resPage) {
         Page<Medicine> medicines;
-        try {
-            medicines = medicineService.findMedicines(vo, null);
-        } catch (Exception e) {
-            throw new SelectException("查询分页信息失败！");
-        }
+        medicines = medicineService.findMedicines(vo, null);
         model.addAttribute("page", medicines);
         model.addAttribute("url", "findMed");
         return resPage;
@@ -103,8 +98,7 @@ public class MedicineController {
     @ResponseBody
     public String checkMedNo(String medNo) {
         //检查格式：字母加数字
-        String pattern = "^[A-Za-z]\\w+";
-        boolean isMatch = Pattern.matches(pattern, medNo);
+        boolean isMatch = Pattern.matches("^[A-Za-z]\\w+", medNo);
         if (!isMatch) {
             return "ERROR";
         }
@@ -130,12 +124,8 @@ public class MedicineController {
     @GetMapping(value = "/findOneMed/{id}")
     public String findOneMed(@PathVariable String id, Model model, String resPage) {
         Medicine medicine;
-        try {
-            medicine = medicineService.findOneMedicine(id);
-        } catch (Exception e) {
-            throw new SelectException("查询该药品信息失败！");
-        }
-        model.addAttribute("medicine",medicine);
+        medicine = medicineService.findOneMedicine(id);
+        model.addAttribute("medicine", medicine);
         return resPage;
     }
 
@@ -147,11 +137,7 @@ public class MedicineController {
      */
     @PostMapping(value = "/updateMed")
     public ModelAndView updateMedicine(Medicine medicine) {
-        try {
-            medicineService.updateMedicine(medicine);
-        } catch (Exception e) {
-            throw new UpdateException("");
-        }
+        medicineService.updateMedicine(medicine);
 
         ModelAndView mav = new ModelAndView();
         mav.addObject("info", "更新成功！");
@@ -172,11 +158,7 @@ public class MedicineController {
     @GetMapping(value = "/fuQue")
     public String fuzzyQuery(Model model, String keyWord, QueryVo vo, String queryPage) {
         Page<Medicine> medicines;
-        try {
-            medicines = medicineService.findMedicines(vo, keyWord.trim());
-        } catch (Exception e) {
-            throw new SelectException("关键词为：" + keyWord + " 的查询失败！");
-        }
+        medicines = medicineService.findMedicines(vo, keyWord.trim());
         model.addAttribute("page", medicines);
         model.addAttribute("url", "fuQue");
         return "baseData/" + queryPage;
@@ -201,11 +183,7 @@ public class MedicineController {
         medicine.setFactoryAdd(medicine.getFactoryAdd().trim());
 
         Page<Medicine> medicineList;
-        try {
-            medicineList = medicineService.findMedByMore(vo, medicine);
-        } catch (Exception e) {
-            throw new SelectException("高级查询失败！");
-        }
+        medicineList = medicineService.findMedByMore(vo, medicine);
         model.addAttribute("page", medicineList);
         model.addAttribute("url", "findByMore");
         return "baseData/" + queryPage;
@@ -220,11 +198,8 @@ public class MedicineController {
     @GetMapping(value = "/delMed/{id}")
     public ModelAndView deleteMedicine(@PathVariable String id) {
 
-        try {
-            medicineService.deleteMedicineById(id);
-        } catch (Exception e) {
-            throw new DeleteException("id为" + id + "的药品删除失败！请确认该药品是否被购买过！");
-        }
+        medicineService.deleteMedicineById(id);
+
         ModelAndView mav = new ModelAndView();
         mav.addObject("info", "删除成功！");
         mav.setViewName("info");
@@ -241,11 +216,7 @@ public class MedicineController {
     @PostMapping(value = "getSave")
     public String getSave(String medNo, Model model) {
         List<Category> categorys;
-        try {
-            categorys = categoryService.findAllCategory();
-        } catch (Exception e) {
-            throw new SelectException("获取分类信息失败！");
-        }
+        categorys = categoryService.findAllCategory();
         model.addAttribute("categorys", categorys);
         model.addAttribute("medNo", medNo);
         return "require/req_save";
@@ -287,16 +258,12 @@ public class MedicineController {
      * @param medCount  medCount
      * @param model     model
      * @param queryPage queryPage
-     * @return
+     * @return String
      */
     @GetMapping(value = "findInventory")
     public String findInventory(QueryVo vo, int type, int medCount, Model model, String queryPage) {
         Page<Medicine> medicines;
-        try {
-            medicines = medicineService.findMedInventory(vo, type, medCount);
-        } catch (Exception e) {
-            throw new SelectException("查看库存失败！");
-        }
+        medicines = medicineService.findMedInventory(vo, type, medCount);
         model.addAttribute("page", medicines);
         model.addAttribute("url", "findInventory");
         return "baseData/" + queryPage;

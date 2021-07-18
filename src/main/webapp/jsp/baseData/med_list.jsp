@@ -11,9 +11,9 @@
     <script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js"></script>
 
     <script>
-        let delMed = (id)=>{
-            if(confirm("确认删除吗？")){
-                location.href = "${pageContext.request.contextPath}/med/delMed/"+id;
+        let delMed = (id) => {
+            if (confirm("确认删除吗？")) {
+                location.href = "${pageContext.request.contextPath}/med/delMed/" + id;
             }
         };
     </script>
@@ -36,7 +36,8 @@
                             <table border="0" width="100%">
                                 <tr>
                                     <td align="left">
-                                        <form action='${pageContext.request.contextPath}/med/fuQue' method="get" class="blur_form">
+                                        <form action='${pageContext.request.contextPath}/med/fuQue' method="get"
+                                              class="blur_form">
                                             <input type="hidden" name="queryPage" value="med_list"/>
                                             模糊查询：<input name="keyWord" type="text" placeholder="按名称或出厂地址" size="20"/>
                                             <input type="submit" value="查询"/>
@@ -63,7 +64,8 @@
                             <td>${medicine.price}元</td>
                             <td>${medicine.medCount}</td>
                             <td>${medicine.factoryAdd}</td>
-                            <td><a href="${pageContext.request.contextPath}/med/findOneMed/${medicine.id}/?resPage=baseData/med_update">修改</a>&nbsp;
+                            <td>
+                                <a href="${pageContext.request.contextPath}/med/findOneMed/${medicine.id}/?resPage=baseData/med_update">修改</a>&nbsp;
                                 <a href="javascript:delMed('${medicine.id}')">删除</a></td>
                         </tr>
                     </c:forEach>

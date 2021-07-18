@@ -3,9 +3,6 @@ package com.zhong.service;
 import com.zhong.po.Medicine;
 import com.zhong.po.QueryVo;
 import com.zhong.utils.Page;
-import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
 
 /**
  * @author 华韵流风

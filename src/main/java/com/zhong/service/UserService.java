@@ -1,6 +1,8 @@
 package com.zhong.service;
 
 import com.zhong.po.AdminUser;
+import com.zhong.po.QueryVo;
+import com.zhong.utils.Page;
 
 import java.util.List;
 
@@ -12,6 +14,23 @@ import java.util.List;
  * @packageName com.zhong.service
  */
 public interface UserService {
+
+
+    /**
+     * 查询管理员是否存在
+     *
+     * @param username username
+     * @return int
+     */
+    Integer getAdminUser(String username);
+
+    /**
+     * 查询密码
+     *
+     * @param id id
+     * @return String
+     */
+    String getPassword(String id);
 
     /**
      * 添加管理员
@@ -38,8 +57,9 @@ public interface UserService {
     /**
      * 查询所有管理员
      *
+     * @param vo vo
      * @return List<AdminUser>
      */
-    List<AdminUser> findAllAdminUser();
+    Page<AdminUser> findAllAdminUser(QueryVo vo);
 
 }

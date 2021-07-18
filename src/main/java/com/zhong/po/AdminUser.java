@@ -13,7 +13,7 @@ public class AdminUser {
     private int id;
     private String username;
     private String password;
-    private Date createTime;
+    private String createTime;
 
     @Override
     public String toString() {
@@ -49,11 +49,11 @@ public class AdminUser {
         this.password = password;
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 }
