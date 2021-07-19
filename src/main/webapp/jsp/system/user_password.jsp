@@ -10,7 +10,6 @@
         $(function () {
             let password = $("input[name='password']");
             password.blur(function () {
-                alert(password.val())
                 $.post({
                     url: "/user/getPass",
                     data: {"password": password.val(), "id":${user.id}},
@@ -19,6 +18,8 @@
                         if (data === "NO") {
                             password.focus();
                             $("#err").text("原密码错误！");
+                        }else{
+                            $("#err").text("");
                         }
                     }
 
@@ -55,7 +56,8 @@
 
             <td bgcolor="#FFFFFF" height="50">
                 <br>
-                <form action="${pageContext.request.contextPath}/user/updateUser" method="post">
+                <form action="${pageContext.request.contextPath}/user/updateUser" method="post" id="form">
+                    <input type="hidden" name="id" value="${user.id}">
                     <table border="0" align="center" width="450">
                         <tr>
                             <td align="right">原密码：</td>
